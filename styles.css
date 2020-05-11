@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+  
+
+body{
+    background-image: url(./back_2.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 32px 32px;
+}
+
+.button-box{
+    position: relative;
+    display: flex;
+}
+
+.buttons {
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgb(112, 112, 112);
+    display: flex;
+}
+
+button{
+    outline: none;
+}
+
+.white {
+    height: 400px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: relative;
+    outline: none;
+    background-color: white;
+}
+
+.black{
+    height: 60%;
+    background-color: black;
+    position: absolute;
+}
+
+button:focus {
+    background: linear-gradient(to bottom, #ffffff 65%)
+}
+
+
+
