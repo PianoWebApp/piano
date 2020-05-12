@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "push-to-git": "npm run add-files && npm run make-commit && npm run push",
+    "push-to-git": "npm run add-files && npm run make-commit && npm run push && npm run alert-push-success",
     "add-files": "git add .",
     "make-commit": "git commit -m 'fast-commit'",
     "push": "git push",
+    "alert-push-success": "node ./alert-scripts/alert-script.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
