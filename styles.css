@@ -14,11 +14,26 @@ body{
     background-size: cover;
 }
 header {
+    position: relative;
     width: 100vw;
     height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgba(44, 44, 44, 0.486);
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.678);
+    /* animation: piano 4s ease-in-out alternate; */
+}
+.main-menu {
+position: absolute;
+left: 0;
+right: 0;
+height: 100%;
+background-image: url(./img/1073-5472x3648.jpg);
+z-index: -1;
+background-attachment: fixed;
+background-size: cover;
+filter: blur(3px);
 }
 .main-header {
     font-weight: 600;
@@ -35,7 +50,7 @@ header {
 .buttons {
     width: 80%;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     opacity: 0.88;
     /* animation: piano 4s ease-in-out alternate; */
@@ -86,6 +101,6 @@ button:focus {
         transform: translateY(0);
     }
     100% {
-        transform: translateY(150px);
+        transform: translateY(-150px);
     }
 } */
