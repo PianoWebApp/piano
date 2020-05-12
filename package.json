@@ -1,0 +1,23 @@
+{
+  "name": "piano-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "push-to-git": "npm run add-files && npm run make-commit && npm run push",
+    "add-files": "git add .",
+    "make-commit": "git commit -m 'fast-commit'",
+    "push": "git push",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PianoWebApp/piano.git"
+  },
+  "author": "Andrey Kopylenko & Andrey Artemenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PianoWebApp/piano/issues"
+  },
+  "homepage": "https://github.com/PianoWebApp/piano#readme"
+}
