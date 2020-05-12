@@ -1,17 +1,32 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Oswald', sans-serif;
 }
+
 
   
 
 body{
-    background-image: url(./back_2.jpg);
+    background-image: url(https://i.picsum.photos/id/1073/5472/3648.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: 32px 32px;
+    background-size: cover;
 }
-
+header {
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-header {
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 35px;
+    margin-left: 20px;
+    letter-spacing: -2px
+}
 .button-box{
     position: relative;
     display: flex;
@@ -20,8 +35,9 @@ body{
 .buttons {
     width: 80%;
     margin: 0 auto;
-    background-color: rgb(112, 112, 112);
     display: flex;
+    opacity: 0.88;
+    /* animation: piano 4s ease-in-out alternate; */
 }
 
 button{
@@ -30,17 +46,32 @@ button{
 
 .white {
     height: 400px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
     position: relative;
     outline: none;
     background-color: white;
+}
+.key-note-name {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+}
+.key-key-name {
+    position: absolute;
+    top: 10px;
+    left: 33%;
+    color: black;
+    font-size: 17px;
 }
 
 .black{
     height: 60%;
     background-color: black;
     position: absolute;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 button:focus {
@@ -49,3 +80,11 @@ button:focus {
 
 
 
+/* @keyframes piano {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(150px);
+    }
+} */
