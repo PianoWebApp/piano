@@ -22,7 +22,8 @@ header {
     align-items: center;
     background-color: rgba(44, 44, 44, 0.486);
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.678);
-    /* animation: piano 4s ease-in-out alternate; */
+    /* animation: piano 4s ease-in-out alternate;
+    animation-delay: 10s; */
 }
 .main-menu {
 position: absolute;
@@ -96,11 +97,11 @@ button:focus {
 
 
 
-/* @keyframes piano {
+@keyframes piano {
     0% {
-        transform: translateY(0);
+        height: 70px;
     }
     100% {
-        transform: translateY(-150px);
+        height: 100vh;
     }
-} */
+}
