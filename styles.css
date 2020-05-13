@@ -37,6 +37,7 @@ background-size: cover;
 filter: blur(3px);
 }
 .main-header {
+    color: rgb(27, 27, 27);
     font-weight: 600;
     font-size: 35px;
     line-height: 35px;
@@ -79,7 +80,7 @@ button{
     position: absolute;
     top: 10px;
     left: 33%;
-    color: black;
+    color: rgba(0, 0, 0, 0.795);
     font-size: 17px;
 }
 
@@ -94,6 +95,9 @@ button{
 button:focus {
     background: linear-gradient(to bottom, #ffffff 65%)
 }
+
+
+
 
 
 
