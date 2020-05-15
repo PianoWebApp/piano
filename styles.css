@@ -23,7 +23,7 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 header {
     position: relative;
@@ -59,9 +59,15 @@ filter: blur(3px);
     letter-spacing: -2px
 }
 .main-menu {
-    display: none;
     width: 65%;
     height: 70%;
+    transition: .5s;
+}
+.main-menu__open {
+    opacity: 1;
+}
+.main-menu__close {
+    opacity: 0;
 }
 .main-menu__list {
     max-height: 70%;
