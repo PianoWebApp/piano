@@ -5,27 +5,42 @@
 }
 
 
-  
+::-webkit-scrollbar { /* 1 - скроллбар */
+    width: 10px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.329);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb { /* 5 - ползунок */
+    border-radius: 5px;
+    background-color: #d1d1d1;
+  }
+
 
 body{
     background-image: url(https://i.picsum.photos/id/1073/5472/3648.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    /* overflow: hidden; */
 }
 header {
     position: relative;
-    width: 100vw;
     height: 70px;
+    /* height: 100vh; */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(44, 44, 44, 0.486);
+    background-color: rgba(44, 44, 44, 0.308);
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.678);
+    padding: 0 20px;
     /* animation: piano 4s ease-in-out alternate;
-    animation-delay: 10s; */
+    animation-delay: 4s; */
 }
-.main-menu {
+header::before {
+content: '';
+display: block;
 position: absolute;
 left: 0;
 right: 0;
@@ -41,8 +56,56 @@ filter: blur(3px);
     font-weight: 600;
     font-size: 35px;
     line-height: 35px;
-    margin-left: 20px;
     letter-spacing: -2px
+}
+.main-menu {
+    display: none;
+    width: 65%;
+    height: 70%;
+}
+.main-menu__list {
+    max-height: 70%;
+    padding: 30px;
+    padding-left: 0;
+    /* background-color: rgba(22, 22, 22, 0.171); */
+    list-style: none;
+    overflow-y: scroll;
+}
+.main-menu__item {
+    color: #e9e9e9;
+    margin-bottom: 10px;
+}
+/* .main-menu__item::before {
+    content: "";
+    display: block;
+    width: 70%;
+    height: 1px;
+    background-color: #e9e9e988;
+} */
+.main-menu__item::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(./img/svg/1589556865.svg);
+    background-size: cover;
+    margin-right: 10px;
+}
+.main-menu__item:nth-child(2n) {
+    color: #0e0e0e;
+}
+.main-menu__item:nth-child(2n)::before {
+    background-image: url(./img/svg/black.svg);
+}
+.search-input {
+    margin-bottom: 20px;
+    width: 50%;
+    padding: 5px 15px;
+    border-radius: 20px;
+    outline: none;
+    background-color: #8181815b;
+    border: solid #ad6c16;
+    color: #181818;
 }
 .button-box{
     position: relative;
@@ -101,11 +164,11 @@ button:focus {
 
 
 
-@keyframes piano {
+/* @keyframes piano {
     0% {
         height: 70px;
     }
     100% {
         height: 100vh;
     }
-}
+} */

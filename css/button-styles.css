@@ -6,7 +6,6 @@
     justify-content: space-between;
     cursor: pointer;
     transition: transform 330ms ease-out;
-    margin-right: 20px;
   }
   
   .wrapper-menu.open {
