@@ -131,13 +131,20 @@ button{
     border-bottom-right-radius: 9px;
     position: relative;
     outline: none;
-    background-color: white;
+    background-color: rgb(243, 243, 243);
+    transition: .1s;
+    border: solid #8a8a8a 1px;
+}
+.white:active {
+    background-color: #dadada;
+    transform: translateY(5px);
 }
 .key-note-name {
     position: absolute;
     bottom: 20px;
     left: 0;
     right: 0;
+    pointer-events: none;
 }
 .key-key-name {
     position: absolute;
@@ -145,14 +152,21 @@ button{
     left: 33%;
     color: rgba(0, 0, 0, 0.795);
     font-size: 17px;
+    pointer-events: none;
 }
 
-.black{
+.black {
     height: 60%;
     background-color: black;
     position: absolute;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    border: solid #838383 1px;
+    transition: .2s;
+}
+.black:active {
+    transform: translateY(2px);
+    box-shadow: #18181869 1px 1px 2px 1px;
 }
 
 button:focus {
