@@ -6,16 +6,16 @@
 
 
 const buttons = document.querySelector('.buttons');
+
+
+
+//playing sounds
+
+
 buttons.addEventListener('click', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
   event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`).play();
 });
-
-
-
-
-
-
 
 
 
