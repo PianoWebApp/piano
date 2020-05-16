@@ -28,6 +28,7 @@ body{
 header {
     position: relative;
     height: 70px;
+    min-height: 70px;
     /* height: 100vh; */
     display: flex;
     justify-content: space-between;
@@ -38,6 +39,7 @@ header {
     /* animation: piano 4s ease-in-out alternate;
     animation-delay: 4s; */
 }
+
 header::before {
 content: '';
 display: block;
@@ -183,6 +185,17 @@ button:focus {
 @media screen and (max-width:1200px) {
     header::before {
         content: unset;
+    }
+    .main-header {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+    .main-menu {
+        margin: 0 auto;
+        margin-top: 10px;
+        width: 90%;
+        height: 80%;
     }
 
 }
