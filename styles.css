@@ -184,11 +184,8 @@ button:focus {
     header::before {
         content: unset;
     }
-.buttons {
-display:none;
-}
-}
 
+}
 
 
 /* @keyframes piano {

@@ -26,7 +26,19 @@ const headerShowAnimation = anime({
   direction: 'alternate',
   easing: 'easeInOutCirc',
   autoplay: false,
+  changeBegin: function(anim) {
+    wrapperMenu.style.pointerEvents = 'none';
+    if (wrapperMenu.classList.contains('open')) {
+       setTimeout(()=> {mainMenu.classList.replace('main-menu__close', 'main-menu__open')}, 500);
+       if (document.querySelector('header').offsetWidth < 1000) buttons.style.display = 'none';
+    }
+    else {
+      mainMenu.classList.replace('main-menu__open', 'main-menu__close');
+      if (document.querySelector('header').offsetWidth < 1000) buttons.style.display = 'flex';
+    }
+  },
   changeComplete: function(anim) {
+    wrapperMenu.style.pointerEvents = 'unset';
     anim.pause();
   }
 });
@@ -60,7 +72,5 @@ buttons.addEventListener('click', ()=> {
   wrapperMenu.addEventListener('click', function(){
   wrapperMenu.classList.toggle('open'); 
   headerShowAnimation.play(); 
-  wrapperMenu.classList.contains('open') ? mainMenu.classList.replace('main-menu__close', 'main-menu__open') :
-  mainMenu.classList.replace('main-menu__open', 'main-menu__close'); 
 });
 
