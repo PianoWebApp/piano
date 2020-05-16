@@ -29,7 +29,7 @@ const headerShowAnimation = anime({
   changeBegin: function(anim) {
     wrapperMenu.style.pointerEvents = 'none';
     if (wrapperMenu.classList.contains('open')) {
-       setTimeout(()=> {mainMenu.classList.replace('main-menu__close', 'main-menu__open')}, 500);
+       setTimeout(()=> {mainMenu.classList.replace('main-menu__close', 'main-menu__open')}, 1000);
        if (document.querySelector('header').offsetWidth < 1000) buttons.style.display = 'none'
        else buttons.style.display = 'flex'
     }

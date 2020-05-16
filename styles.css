@@ -183,6 +183,9 @@ button:focus {
 
 
 @media screen and (max-width:1200px) {
+    header {
+        background-attachment: unset;
+    }
     header::before {
         content: unset;
     }
