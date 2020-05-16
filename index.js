@@ -30,12 +30,15 @@ const headerShowAnimation = anime({
     wrapperMenu.style.pointerEvents = 'none';
     if (wrapperMenu.classList.contains('open')) {
        setTimeout(()=> {mainMenu.classList.replace('main-menu__close', 'main-menu__open')}, 1000);
-       if (document.querySelector('header').offsetWidth < 1000) buttons.style.display = 'none'
+       if (document.querySelector('header').offsetWidth < 1200) buttons.style.display = 'none'
        else buttons.style.display = 'flex'
     }
     else {
       mainMenu.classList.replace('main-menu__open', 'main-menu__close');
-      if (document.querySelector('header').offsetWidth < 1000) buttons.style.display = 'flex'
+      if (document.querySelector('header').offsetWidth < 1200) setTimeout(()=>
+      {
+        buttons.style.display = 'flex'
+      },1000) 
       else buttons.style.display = 'flex'
     }
   },
