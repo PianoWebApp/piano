@@ -260,11 +260,8 @@ input[type=range].volume-input {
     justify-content: center;
     align-items: center;
     display: none;
-    opacity: 1;
 }
-.modal-window-show {
-    
-}
+
 .modal-window__list {
     width: 70%;
     height: 80%;
@@ -358,6 +355,9 @@ button:focus {
 
 
 @media screen and (max-width:1200px) {
+    body {
+        background-attachment: unset;
+    }
     header {
         background-attachment: unset;
     }

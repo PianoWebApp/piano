@@ -69,7 +69,7 @@ volumeInput.addEventListener('change', ()=> {
 
 buttons.addEventListener('click', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
-  event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`);
+  event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
   event.audio.volume = volume;
   event.audio.play();
 });
