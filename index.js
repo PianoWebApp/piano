@@ -14,6 +14,11 @@ const buttons = document.querySelector('.buttons');
 const mainMenu = document.querySelector('.main-menu');
 const wrapperMenu = document.querySelector('.wrapper-menu');
 const searchInput = document.querySelector('.search-input');
+const modalWindow = document.querySelector('.modal-window');
+const body = document.querySelector('body');
+const header = document.querySelector('header');
+const volumeInput = document.querySelector('.volume-input');
+let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
 
 
 
@@ -50,9 +55,12 @@ const headerShowAnimation = anime({
 });
 
 
-
-
-
+//volume-change
+volumeInput.value = volume * 100
+volumeInput.addEventListener('change', ()=> {
+  volume = volumeInput.value / 100;
+  localStorage.setItem('volume', volume);
+})
 
 
 
@@ -61,7 +69,9 @@ const headerShowAnimation = anime({
 
 buttons.addEventListener('click', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
-  event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`).play();
+  event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`);
+  event.audio.volume = volume;
+  event.audio.play();
 });
 
 
@@ -96,6 +106,20 @@ searchInput.addEventListener('input', ()=> {
 
 });
 
-
-
+//modal window
+document.querySelector('.bg-change-btn').addEventListener('click', () => modalWindow.style.display = 'flex');
+const changeBg = function(imgUrl) {
+  if (!imgUrl) return
+  header.style.setProperty('--bg-img', `url(${imgUrl})`);
+  body.style.backgroundImage = `url(${imgUrl})`;
+}
+modalWindow.addEventListener('click', ()=> {
+  if(event.target === modalWindow) modalWindow.style.display = 'none';
+  if(event.target.nodeName !== 'IMG') return;
+  const imgPath = event.target.getAttribute('full-size');
+  localStorage.setItem('bgImage', imgPath);
+  changeBg(imgPath);
+  modalWindow.style.display = 'none';
+});
+changeBg(localStorage.getItem('bgImage'));
 

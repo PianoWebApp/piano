@@ -8,12 +8,31 @@
         <link rel="stylesheet" href="./css/button-styles.css" />
         <link rel="shortcut icon" href="./img/icons/piano-icon.ico" type="image/x-icon" />
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <style></style>
     </head>
     <body>
         <header class = 'site-header'>
+        <div class="modal-window">
+            <ul class="modal-window__list">
+                <li class="modal-window__item">
+                    <img full-size="./img/1021-2048x1206-min.jpg" src="./img/resized/1021-2048x1206.jpg" alt="Forest" class="modal-window-img">
+                </li>
+                <li class="modal-window__item">
+                    <img full-size="./img/1073-5472x3648.jpg" src="./img/1073-5472x3648.jpg" alt="Books" class="modal-window-img">
+                </li>
+                <li class="modal-window__item">
+                    <img full-size="./img/143-3600x2385-min.jpg" src="./img/143-3600x2385-min.jpg" alt="Table" class="modal-window-img">
+                </li>
+                <li class="modal-window__item">
+                    <img full-size="./img/210-1920x1280-min.jpg" src="./img/210-1920x1280-min.jpg" alt="Bricks" class="modal-window-img">
+                </li>
+            </ul>
+        </div>
         <h1 class="main-header">P <span style="color: #f5f5f5;"> i </span> a <span style="color: #f5f5f5;"> n </span> o</h1>
         <div class="main-menu main-menu__close">
-        <input class="search-input" type="text">
+        <input class='volume-input' type="range">
+        <input placeholder="Введите название музыки" class="search-input" type="text">
+        <button class="bg-change-btn">Изменить фон</button>
         <ul class="main-menu__list">
             <li class="main-menu__item">Flex</li>
             <li class="main-menu__item">Aaron .mp3</li>

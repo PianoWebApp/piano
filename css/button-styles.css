@@ -1,11 +1,14 @@
 .wrapper-menu {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
     transition: transform 330ms ease-out;
+    background: #ffffff49;
+    padding: 13px;
+    border-radius: 50%;
   }
   
   .wrapper-menu.open {
