@@ -67,7 +67,7 @@ volumeInput.addEventListener('change', ()=> {
 //playing sounds
 
 
-buttons.addEventListener('click', ()=> {
+buttons.addEventListener('mousedown', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
   event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
   event.audio.volume = volume;
@@ -125,15 +125,28 @@ changeBg(localStorage.getItem('bgImage'));
 
 
 
-// const keysObj = new Object();
-// const buttonsArray = [...buttons.querySelectorAll('button')];
-// console.log(buttonsArray)
-// buttonsArray.forEach(el => {
-//   keysObj[el.getAttribute('key')] = el;
-// })
-// console.log(keysObj)
+const keysObj = new Object();
+const buttonsArray = [...buttons.querySelectorAll('button')];
+console.log(buttonsArray)
+buttonsArray.forEach(el => {
+  el.isPlaying = false
+  keysObj[el.getAttribute('key')] = el;
 
+})
 
-window.addEventListener('keyup', ()=>(console.log( 'keyup ' + event.key)))
-// window.addEventListener('keypress', ()=>(console.log( 'keypress ' + event.key)))
-// window.addEventListener('keydown', ()=>(console.log( 'keydown ' + event.key)))
+window.addEventListener('keydown', ()=> {
+  const button = keysObj[event.key]
+  if (button.isPlaying) return
+  button.isPlaying = true
+  //change style
+  event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
+  event.audio.volume = volume;
+  event.audio.play();
+}) 
+
+window.addEventListener('keyup', ()=>{
+  const button = keysObj[event.key]
+  //change style
+  button.isPlaying = false
+})
+
