@@ -6,6 +6,7 @@
 import {anime} from './scripts/anime.js';
 
 
+
 //dedication variables
 
 
@@ -18,9 +19,18 @@ const modalWindow = document.querySelector('.modal-window');
 const body = document.querySelector('body');
 const header = document.querySelector('header');
 const volumeInput = document.querySelector('.volume-input');
+const buttonsArray = [...buttons.querySelectorAll('button')];
 let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
 
+//preload audio
 
+const audioArray = new Array();
+buttonsArray.forEach(el => {
+  const audio = new Audio();
+  audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
+  audioArray.push(audio);
+})
+console.log(audioArray)
 
 
 // variables ANIMATION
@@ -126,7 +136,6 @@ changeBg(localStorage.getItem('bgImage'));
 
 
 const keysObj = new Object();
-const buttonsArray = [...buttons.querySelectorAll('button')];
 console.log(buttonsArray)
 buttonsArray.forEach(el => {
   el.isPlaying = false
