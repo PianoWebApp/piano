@@ -125,10 +125,15 @@ changeBg(localStorage.getItem('bgImage'));
 
 
 
-const keysObj = new Object();
-const buttonsArray = [...buttons.querySelectorAll('button')];
-console.log(buttonsArray)
-buttonsArray.forEach(el => {
-  keysObj[el.getAttribute('key')] = el;
-})
-console.log(keysObj)
+// const keysObj = new Object();
+// const buttonsArray = [...buttons.querySelectorAll('button')];
+// console.log(buttonsArray)
+// buttonsArray.forEach(el => {
+//   keysObj[el.getAttribute('key')] = el;
+// })
+// console.log(keysObj)
+
+
+window.addEventListener('keyup', ()=>(console.log( 'keyup ' + event.key)))
+// window.addEventListener('keypress', ()=>(console.log( 'keypress ' + event.key)))
+// window.addEventListener('keydown', ()=>(console.log( 'keydown ' + event.key)))
