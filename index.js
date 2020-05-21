@@ -131,4 +131,10 @@ console.log(buttonsArray)
 buttonsArray.forEach(el => {
   keysObj[el.getAttribute('key')] = el;
 })
-console.log(keysObj)
+
+
+window.addEventListener('keydown',() => {const click = new Event('click');
+event.audio = new Audio(`./sounds/${keysObj[event.key].getAttribute('file-name')}.mp3`)
+event.audio.volume = volume;
+event.audio.play();
+})
