@@ -30,7 +30,7 @@ buttonsArray.forEach(el => {
   audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
   audioArray.push(audio);
 })
-console.log(audioArray)
+console.log(audioArray);
 
 
 // variables ANIMATION
@@ -144,18 +144,26 @@ buttonsArray.forEach(el => {
 })
 
 window.addEventListener('keydown', ()=> {
-  const button = keysObj[event.key]
-  if (button.isPlaying) return
-  button.isPlaying = true
+  const button = keysObj[event.code];
+  if (!button || button.isPlaying) return;
+  button.isPlaying = true;
   //change style
+  button.classList.contains('white') ? button.classList.toggle('white-click') : button.classList.toggle("black-click");
+
+
   event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
   event.audio.volume = volume;
   event.audio.play();
-}) 
+});
 
 window.addEventListener('keyup', ()=>{
-  const button = keysObj[event.key]
+  const button = keysObj[event.code];
+  if(!button) return;
   //change style
-  button.isPlaying = false
-})
+  button.classList.contains('white') ? button.classList.toggle('white-click') : button.classList.toggle("black-click");
+
+
+
+  button.isPlaying = false;
+});
 

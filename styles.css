@@ -293,22 +293,34 @@ input[type=range].volume-input {
     position: relative;
     display: flex;
 }
-
+main {
+    height: 100%;
+    position: relative;
+}
+.note-box {
+    background-color: #222222;
+    width: 80%;
+    height: 30%;
+    margin: 0 auto;
+}
 .buttons {
     width: 80%;
+    height: 70%;
     margin: 0 auto;
     margin-top: 20px;
     display: flex;
     opacity: 0.88;
     /* animation: piano 4s ease-in-out alternate; */
 }
-
+.buttons-note-mode {
+    margin-top: 0;
+}
 button{
     outline: none;
 }
 
 .white {
-    height: 400px;
+    height: 100%;
     border-bottom-left-radius: 9px;
     border-bottom-right-radius: 9px;
     position: relative;
@@ -318,6 +330,10 @@ button{
     border: solid #8a8a8a 1px;
 }
 .white:active {
+    background-color: #dadada;
+    transform: translateY(5px);
+}
+.white-click {
     background-color: #dadada;
     transform: translateY(5px);
 }
@@ -358,7 +374,10 @@ button{
     transform: translateY(2px);
     box-shadow: #18181869 1px 1px 2px 1px;
 }
-
+.black-click {
+    transform: translateY(2px);
+    box-shadow: #18181869 1px 1px 2px 1px;
+}
 button:focus {
     background: linear-gradient(to bottom, #ffffff 65%)
 }
@@ -392,6 +411,16 @@ button:focus {
     .modal-window__item {
         width: unset;
         height: 24%;
+    }
+    .buttons {
+        width: 100%;
+        height: 70%;
+    }
+    @media screen and (max-width:768px) {
+        .buttons {
+            width: 100%;
+            height: 50%;
+        }
     }
 
 }
