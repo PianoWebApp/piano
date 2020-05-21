@@ -115,11 +115,10 @@ const changeBg = function(imgUrl) {
 }
 modalWindow.addEventListener('click', ()=> {
   if(event.target === modalWindow) modalWindow.style.display = 'none';
-  if(event.target.nodeName !== 'IMG') return;
+  if(event.target.nodeName !== 'LI') return;
   const imgPath = event.target.getAttribute('full-size');
   localStorage.setItem('bgImage', imgPath);
   changeBg(imgPath);
   modalWindow.style.display = 'none';
 });
 changeBg(localStorage.getItem('bgImage'));
-
