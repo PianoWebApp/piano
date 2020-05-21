@@ -129,12 +129,24 @@ const keysObj = new Object();
 const buttonsArray = [...buttons.querySelectorAll('button')];
 console.log(buttonsArray)
 buttonsArray.forEach(el => {
+  el.isPlaying = false
   keysObj[el.getAttribute('key')] = el;
+
 })
 
+window.addEventListener('keypress', ()=> {
+  const button = keysObj[event.key]
+  if (button.isPlaying) return
+  button.isPlaying = true
+  //change style
+  event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
+  event.audio.volume = volume;
+  event.audio.play();
+}) 
 
-window.addEventListener('keydown',() => {const click = new Event('click');
-event.audio = new Audio(`./sounds/${keysObj[event.key].getAttribute('file-name')}.mp3`)
-event.audio.volume = volume;
-event.audio.play();
+window.addEventListener('keyup', ()=>{
+  const button = keysObj[event.key]
+  //change style
+  button.isPlaying = false
 })
+
