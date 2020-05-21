@@ -122,3 +122,14 @@ modalWindow.addEventListener('click', ()=> {
   modalWindow.style.display = 'none';
 });
 changeBg(localStorage.getItem('bgImage'));
+
+
+
+const keysObj = new Object();
+const buttonsArray = [...buttons.querySelectorAll('button')];
+console.log(buttonsArray)
+buttonsArray.forEach(el => {
+  console.log(el)
+  keysObj[el.getAttribute('key')] = ''
+})
+console.log(keysObj)
