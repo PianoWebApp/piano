@@ -129,7 +129,6 @@ const keysObj = new Object();
 const buttonsArray = [...buttons.querySelectorAll('button')];
 console.log(buttonsArray)
 buttonsArray.forEach(el => {
-  console.log(el)
-  keysObj[el.getAttribute('key')] = ''
+  keysObj[el.getAttribute('key')] = el;
 })
 console.log(keysObj)
