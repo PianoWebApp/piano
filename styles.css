@@ -23,6 +23,7 @@
 
 
 body{
+    height: 100vh;
     background-image: url(https://i.picsum.photos/id/1073/5472/3648.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -89,6 +90,7 @@ filter: blur(3px);
     margin-bottom: 10px;
     padding: 2px;
     cursor: pointer;
+    transition: .3s;
 }
 /* .main-menu__item::before {
     content: "";
@@ -105,6 +107,9 @@ filter: blur(3px);
     background-image: url(./img/svg/1589556865.svg);
     background-size: cover;
     margin-right: 10px;
+}
+.main-menu__item:hover {
+    text-decoration: underline;
 }
 .main-menu__item:hover {
     background-color: #0e0e0e21;
@@ -146,7 +151,7 @@ filter: blur(3px);
     background-color: #cccccca6;
 }
 .volume-input {
-    padding: 2px;
+    padding: 4px;
     border-radius: 5px;
     background-color: #ffffffa9;
 }
@@ -334,6 +339,14 @@ button{
     font-size: 17px;
     pointer-events: none;
 }
+.key-key-name-black {
+    font-size: 15px;
+    color: rgb(236, 236, 236);
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+}   
 
 .black {
     height: 60%;
