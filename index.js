@@ -67,7 +67,7 @@ volumeInput.addEventListener('change', ()=> {
 //playing sounds
 
 
-buttons.addEventListener('click', ()=> {
+buttons.addEventListener('mousedown', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
   event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
   event.audio.volume = volume;
