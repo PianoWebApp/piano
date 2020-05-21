@@ -283,15 +283,12 @@ input[type=range].volume-input {
     height: 48%;
     background-color: #fff;
     overflow: hidden;
+    background-size: cover;
+    transition: .5s;
 }
-.modal-window-img {
-    width: 100%;
-    transition: .4s;
+.modal-window__item:hover {
+    transform: scale(1.05);
 }
-.modal-window-img:hover {
-    transform: scale(1.1);
-}
-
 .button-box{
     position: relative;
     display: flex;
