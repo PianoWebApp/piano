@@ -122,3 +122,8 @@ modalWindow.addEventListener('click', ()=> {
   modalWindow.style.display = 'none';
 });
 changeBg(localStorage.getItem('bgImage'));
+
+
+//key press
+
+
