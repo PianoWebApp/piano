@@ -22,6 +22,7 @@ const volumeInput = document.querySelector('.volume-input');
 const buttonsArray = [...buttons.querySelectorAll('button')];
 const mainMenuList = document.querySelector('.main-menu__list')
 let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
+const notesBox = document.querySelector('.notes');
 
 //preload audio
 
@@ -175,6 +176,37 @@ window.addEventListener('keyup', ()=>{
 
 
 let playMode = false;
+
+
+const createNoteObject = function () {
+  const noteContainers = new Object();
+  [...notesBox.querySelectorAll('.notes-column')].forEach(el => {
+  noteContainers[el.getAttribute('container-name')] = el;
+  })
+  console.log(noteContainers);
+  return noteContainers;
+}
+
+
+
+
+//GENERATE NOTES ON CONTAINER ############################################################
+const notesGenerator = function(notesArray) {
+  const noteContainersObj = createNoteObject();
+  console.log(noteContainersObj);
+  
+  let bottomInterval = 100;
+  notesArray.forEach(el => {
+    let elHeight = 100;
+    if (el[2]) elHeight = +el[2];
+    const div = document.createElement('div');
+    noteContainersObj[el[0]].append(div);
+    div.style.bottom = `${bottomInterval}px`;
+    if(el[2] !== 'tgth') bottomInterval+= elHeight;
+
+  });
+};
+
 const songsObjs = {
   '1':'w1,100|w2|w3|w4|w5|w6|w7|w8|w9|w10|w11|w12|w13|w14|w15',
 }
@@ -187,15 +219,15 @@ const startNotes = function(noteString) {
   // const notes
   const notes = parseNotes(noteString);
   console.log(notes);
-
-    buttons.classList.add('buttons-playing');
       wrapperMenu.classList.remove('open');
       headerShowAnimation.play();
   if (header.offsetWidth < 1200) {
-
+    console.log(12)
   }
   else {
-      
+      buttons.classList.add('buttons-playing');
+      document.querySelector('.note-box').classList.remove('note-box__hiden');
+      notesGenerator(notes);
    }
   }
 

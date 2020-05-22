@@ -26,8 +26,34 @@
     margin: 0 auto;
     overflow: hidden;
 }
+.note-box__hiden {
+    display: none;
+}
 .notes {
-    width: 10px;
+    width: 100%;
     height: 10px;
     background-color: yellowgreen;
+    position: relative;
+    display: flex;
+}
+.notes-box {
+    position: relative;
+    display: flex;
+    height: 100%;
+}
+.notes-white {
+    height: 100%;
+    position: relative;
+    background-color: #fff;
+}
+.notes-black {
+    height: 100%;
+    position: absolute;
+    background-color: #000000;
+}
+
+@media screen and (max-width:1200px) {
+    .note-box {
+        display: none;
+    }
 }
