@@ -187,13 +187,15 @@ const startNotes = function(noteString) {
   // const notes
   const notes = parseNotes(noteString);
   console.log(notes);
+
+    buttons.classList.add('buttons-playing');
+      wrapperMenu.classList.remove('open');
+      headerShowAnimation.play();
   if (header.offsetWidth < 1200) {
 
   }
   else {
-      buttons.classList.add('buttons-playing');
-      wrapperMenu.classList.remove('open');
-      headerShowAnimation.play();
+      
    }
   }
 
