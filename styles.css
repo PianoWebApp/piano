@@ -297,12 +297,7 @@ main {
     height: 100%;
     position: relative;
 }
-.note-box {
-    background-color: #222222;
-    width: 80%;
-    height: 30%;
-    margin: 0 auto;
-}
+
 .buttons {
     width: 80%;
     height: 70%;
@@ -311,6 +306,7 @@ main {
     display: flex;
     opacity: 0.88;
     /* animation: piano 4s ease-in-out alternate; */
+    transition: .6s;
 }
 .buttons-note-mode {
     margin-top: 0;

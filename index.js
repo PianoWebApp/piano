@@ -20,6 +20,7 @@ const body = document.querySelector('body');
 const header = document.querySelector('header');
 const volumeInput = document.querySelector('.volume-input');
 const buttonsArray = [...buttons.querySelectorAll('button')];
+const mainMenuList = document.querySelector('.main-menu__list')
 let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
 
 //preload audio
@@ -167,3 +168,38 @@ window.addEventListener('keyup', ()=>{
   button.isPlaying = false;
 });
 
+
+
+
+//LET THIS PLAY
+
+
+let playMode = false;
+const songsObjs = {
+  '1':'w1,100|w2|w3|w4|w5|w6|w7|w8|w9|w10|w11|w12|w13|w14|w15',
+}
+const parseNotes = function(string) {
+  const notes = string.split('|');
+  return notes.map(el => el.split(','))
+}
+const startNotes = function(noteString) {
+  console.log(1);
+  // const notes
+  const notes = parseNotes(noteString);
+  console.log(notes);
+  if (header.offsetWidth < 1200) {
+
+  }
+  else {
+      buttons.classList.add('buttons-playing');
+      wrapperMenu.classList.remove('open');
+      headerShowAnimation.play();
+   }
+  }
+
+mainMenuList.addEventListener('click', ()=> {
+  if(event.target.nodeName !== 'LI') return;
+  const songName = event.target.getAttribute('music-name');
+  const notes = songsObjs[songName];
+  if(notes) startNotes(notes);
+});

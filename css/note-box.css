@@ -1,0 +1,33 @@
+.header-close {
+    transform: translateY(-110%);
+}
+:root {
+    --box-width: 60%;
+}
+.buttons-playing {
+    position: absolute;
+    width: var(--box-width);
+    height: 40%;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: unset;
+}
+
+.note-box {
+    margin: unset;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #222222;
+    width: var(--box-width);
+    height: 45%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.notes {
+    width: 10px;
+    height: 10px;
+    background-color: yellowgreen;
+}

@@ -6,6 +6,7 @@
         <title>Piano App</title>
         <link rel="stylesheet" href="./styles.css" />
         <link rel="stylesheet" href="./css/button-styles.css" />
+        <link rel="stylesheet" href="./css/note-box.css">
         <link rel="shortcut icon" href="./img/icons/piano-icon.ico" type="image/x-icon" />
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
         <style></style>
@@ -34,26 +35,26 @@
         <input placeholder="Введите название музыки" class="search-input" type="text">
         <button class="bg-change-btn">Изменить фон</button>
         <ul class="main-menu__list">
-            <li class="main-menu__item">Flex</li>
-            <li class="main-menu__item">Aaron .mp3</li>
-            <li class="main-menu__item">Why are you running</li>
-            <li class="main-menu__item">Lorem, ipsum.</li>
-            <li class="main-menu__item">Lorem ipsum dolor sit.</li>
-            <li class="main-menu__item">12456111111111111117</li>
-            <li class="main-menu__item">1245671111111111111111111</li>
-            <li class="main-menu__item">1241111111111111111111111111111111111567</li>
-            <li class="main-menu__item">1245111111111111111111167</li>
-            <li class="main-menu__item">124511111111111111111111111111111167</li>
-            <li class="main-menu__item">1241111111111111111111567</li>
-            <li class="main-menu__item">1241111111111567</li>
-            <li class="main-menu__item">121111111111111111111111111111114567</li>
-            <li class="main-menu__item">12411111111111111111111567</li>
-            <li class="main-menu__item">124111111111111111111111111111111111111567</li>
-            <li class="main-menu__item">12456111111111111111111111117</li>
-            <li class="main-menu__item">1245671111111111111111111</li>
-            <li class="main-menu__item">1241111111111111111111111111111111111567</li>
-            <li class="main-menu__item">1245111111111111111111167</li>
-            <li class="main-menu__item">124511111111111111111111111111111167</li>
+            <li music-name="1" class="main-menu__item">Flex</li>
+            <li music-name="2" class="main-menu__item">Aaron .mp3</li>
+            <li music-name="3" class="main-menu__item">Why are you running</li>
+            <li music-name="4" class="main-menu__item">Lorem, ipsum.</li>
+            <li music-name="5" class="main-menu__item">Lorem ipsum dolor sit.</li>
+            <li music-name="6" class="main-menu__item">12456111111111111117</li>
+            <li music-name="7" class="main-menu__item">1245671111111111111111111</li>
+            <li music-name="8" class="main-menu__item">1241111111111111111111111111111111111567</li>
+            <li music-name="9" class="main-menu__item">1245111111111111111111167</li>
+            <li music-name="10" class="main-menu__item">124511111111111111111111111111111167</li>
+            <li music-name="11" class="main-menu__item">1241111111111111111111567</li>
+            <li music-name="12" class="main-menu__item">1241111111111567</li>
+            <li music-name="13" class="main-menu__item">121111111111111111111111111111114567</li>
+            <li music-name="14" class="main-menu__item">12411111111111111111111567</li>
+            <li music-name="15" class="main-menu__item">124111111111111111111111111111111111111567</li>
+            <li music-name="16" class="main-menu__item">12456111111111111111111111117</li>
+            <li music-name="17" class="main-menu__item">1245671111111111111111111</li>
+            <li music-name="18" class="main-menu__item">1241111111111111111111111111111111111567</li>
+            <li music-name="19" class="main-menu__item">1245111111111111111111167</li>
+            <li music-name="20" class="main-menu__item">124511111111111111111111111111111167</li>
         </ul>
         </div>
         <div class="wrapper-menu">
@@ -64,14 +65,16 @@
         </header>
 
         <main>
-            <div class="note-box"></div>
+            <div class="note-box">
+                <div class="notes"></div>
+            </div>
             <div class="buttons">
                 <div style="width: 20%;" class="button-box">
                     <button key="Tab" file-name="w1" style="width: 33.3%; border-top-left-radius: 20px; border-bottom-left-radius: 20px;" id="do0" class="white"> <span class="key-key-name">↹</span> <span class="key-note-name"> ДО </span></button>
                     <button key="KeyQ" file-name="w2"style="width: 33.3%;" id="re0" class="white pressed-white"> <span class="key-key-name">Q</span> <span class="key-note-name"> РЕ</span></button>
                     <button key="KeyW" file-name="w3"style="width: 33.3%;" id="mi0" class="white"> <span class="key-key-name">W</span> <span class="key-note-name"> МИ</span></button>
-                    <button key="Digit1" file-name="b1"style="width: 20%; left: 20%;" class="black"> <span class="hey-key-name-black">1</span> </button>
-                    <button key="Digit2" file-name="b2"style="width: 20%; right: 25%;" class="black"> <span class="hey-key-name-black">2</span> </button>
+                    <button key="Digit1" file-name="b1"style="width: 20%; left: 20%;" class="black"> <span class="key-key-name-black">1</span> </button>
+                    <button key="Digit2" file-name="b2"style="width: 20%; right: 25%;" class="black"> <span class="key-key-name-black">2</span> </button>
                 </div>
 
                 <div style="width: 26%;" class="button-box">
@@ -79,17 +82,17 @@
                     <button key="KeyR" file-name="w5"id="sol0" style="width: 25%;" class="white"> <span class="key-key-name">R</span> <span class="key-note-name"> СОЛЬ</span></button>
                     <button key="KeyT" file-name="w6"id="lya0" style="width: 25%;" class="white"> <span class="key-key-name">T</span> <span class="key-note-name"> ЛЯ</span></button>
                     <button key="KeyY" file-name="w7"id="si0" style="width: 25%;" class="white"> <span class="key-key-name">Y</span> <span class="key-note-name"> СИ</span></button>
-                    <button key="Digit3" file-name="b3"style="width: 15%; left: 14%;" class="black"> <span class="hey-key-name-black">3</span> </button>
-                    <button key="Digit4" file-name="b4"style="width: 15%; left: 40%;" class="black"> <span class="hey-key-name-black">4</span> </button>
-                    <button key="Digit5" file-name="b5"style="width: 15%; right: 20%;" class="black"> <span class="hey-key-name-black">5</span> </button>
+                    <button key="Digit3" file-name="b3"style="width: 15%; left: 14%;" class="black"> <span class="key-key-name-black">3</span> </button>
+                    <button key="Digit4" file-name="b4"style="width: 15%; left: 40%;" class="black"> <span class="key-key-name-black">4</span> </button>
+                    <button key="Digit5" file-name="b5"style="width: 15%; right: 20%;" class="black"> <span class="key-key-name-black">5</span> </button>
                 </div>
 
                 <div style="width: 20%;" class="button-box">
                     <button key="KeyU" file-name="w8"style="width: 33.3%;" id="do1" class="white"> <span class="key-key-name">U</span> <span class="key-note-name"> ДО</span></button>
                     <button key="KeyI" file-name="w9"style="width: 33.3%;" id="re1" class="white"> <span class="key-key-name">I</span> <span class="key-note-name"> РЕ</span></button>
                     <button key="KeyO" file-name="w10"style="width: 33.3%;" id="mi1" class="white"> <span style="left: 60%;" class="key-key-name">O</span> <span class="key-note-name"> МИ</span></button>
-                    <button key="Digit6" file-name="b6"style="width: 20%; left: 20%;" class="black"> <span class="hey-key-name-black">6</span> </button>
-                    <button key="Digit7" file-name="b7"style="width: 20%; right: 20%;" class="black"> <span class="hey-key-name-black">7</span> </button>
+                    <button key="Digit6" file-name="b6"style="width: 20%; left: 20%;" class="black"> <span class="key-key-name-black">6</span> </button>
+                    <button key="Digit7" file-name="b7"style="width: 20%; right: 20%;" class="black"> <span class="key-key-name-black">7</span> </button>
                 </div>
 
                 <div style="width: 34%;" class="button-box">
@@ -98,9 +101,9 @@
                     <button id="lya1" key="BracketRight" file-name="w13"style="width: 20%;" class="white"> <span class="key-key-name">]</span> <span class="key-note-name"> ЛЯ</span></button>
                     <button id="si1" key="Backslash" file-name="w14"style="width: 20%;" class="white"> <span style="left: 50%;" class="key-key-name">\</span> <span class="key-note-name"> СИ</span></button>
                     <button id="do1" key="Enter" file-name="w15"style="width: 20%; border-top-right-radius: 20px; border-bottom-right-radius: 20px;" class="white"> <span class="key-key-name">↲</span> <span class="key-note-name"> ДО </span></button>
-                    <button key="Digit8" file-name="b8"style="width: 12%; left: 14%;" class="black"> <span class="hey-key-name-black">8</span> </button>
-                    <button key="Digit9" file-name="b9"style="width: 12%; left: 33%;" class="black"> <span class="hey-key-name-black">9</span> </button>
-                    <button key="Digit0" file-name="b10"style="width: 12%; left: 55%;" class="black"> <span class="hey-key-name-black">0</span> </button>
+                    <button key="Digit8" file-name="b8"style="width: 12%; left: 14%;" class="black"> <span class="key-key-name-black">8</span> </button>
+                    <button key="Digit9" file-name="b9"style="width: 12%; left: 33%;" class="black"> <span class="key-key-name-black">9</span> </button>
+                    <button key="Digit0" file-name="b10"style="width: 12%; left: 55%;" class="black"> <span class="key-key-name-black">0</span> </button>
                 </div>
             </div>
         </main>
