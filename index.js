@@ -250,11 +250,11 @@ const startPlayingAnim = function(bottomValue) {
     if(wrapperMenu.classList.contains('open')) slideNotesAnimation.pause();
     else setTimeout(() => {
       slideNotesAnimation.play();
-    }, 2000);
+    }, 3200);
   });
   setTimeout(() => {
     slideNotesAnimation.play();
-  }, 2000);
+  }, 3200);
 
   // const move = setInterval(()=> {
   //   movingBox.style.transform = `translateY(${axisY += 1}px)`;
