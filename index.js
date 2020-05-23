@@ -201,10 +201,15 @@ const notesGenerator = function(notesArray) {
     if (el[2]) elHeight = +el[2];
     const div = document.createElement('div');
     noteContainersObj[el[0]].append(div);
+    div.style.height = elHeight + 'px';
     div.style.bottom = `${bottomInterval}px`;
+    div.classList.add('note-block');
+    const keyText = document.createElement('p');
+    keyText.textContent = noteContainersObj[el[0]].getAttribute('keyboard-key');
+    div.append(keyText);
     if(el[2] !== 'tgth') bottomInterval+= elHeight;
-
   });
+  document.querySelector('.notes').style.height = bottomInterval + 'px';
 };
 
 const songsObjs = {

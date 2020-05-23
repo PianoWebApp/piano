@@ -412,6 +412,7 @@ button:focus {
         width: 100%;
         height: 70%;
     }
+
     @media screen and (max-width:768px) {
         .buttons {
             width: 100%;

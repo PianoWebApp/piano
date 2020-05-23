@@ -33,7 +33,8 @@
     width: 100%;
     height: 10px;
     background-color: yellowgreen;
-    position: relative;
+    position: absolute;
+    bottom: 0;
     display: flex;
 }
 .notes-box {
@@ -51,6 +52,12 @@
     position: absolute;
     background-color: #000000;
 }
+.note-block {
+    border-radius: 20px;
+    background: rgba(130,130,130,1);
+    background: radial-gradient(circle, rgba(130,130,130,1) 0%, rgba(59,59,59,1) 100%);
+}
+
 
 @media screen and (max-width:1200px) {
     .note-box {
