@@ -4,6 +4,7 @@
 
 //export
 import {anime} from './scripts/anime.js';
+// import { SoundManager, soundManager } from './scripts/soundmanager2.js';
 
 
 
@@ -32,16 +33,35 @@ let curentNoteIndex = 0;
 let previousNote;
 
 
+//load sound-manager
 
 //preload audio
 
-const audioArray = new Array();
-buttonsArray.forEach(el => {
-  const audio = new Audio();
-  audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
-  audioArray.push(audio);
-})
-console.log(audioArray);
+// const audioArray = new Array();
+// buttonsArray.forEach(el => {
+//   const audio = new Audio();
+//   audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
+//   audioArray.push(audio);
+// })
+soundManager.setup({
+  useFastPolling: true,
+  useHighPerformance: true,
+  onready: function() {
+    buttonsArray.forEach(el => {
+      soundManager.createSound({
+        id: el.getAttribute('file-name'),
+        url: `./sounds/${el.getAttribute('file-name')}.mp3`
+      })
+    });
+    }});
+// buttonsArray.forEach(el => {
+//   soundManager.createSound({
+//     id: el.getAttribute('file-name'),
+//     url: `./sounds/${el.getAttribute('file-name')}.mp3`
+//   })
+// });
+
+// console.log(audioArray);
 
 
 // variables ANIMATION
@@ -92,7 +112,7 @@ const readyTextDrawingAnimation = anime({
 //volume-change
 volumeInput.value = volume * 100
 volumeInput.addEventListener('change', ()=> {
-  volume = volumeInput.value / 100;
+  volume = +volumeInput.value;
   localStorage.setItem('volume', volume);
 })
 
@@ -128,9 +148,13 @@ const mobilePlaying = function (button) {
 
 buttons.addEventListener('mousedown', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
-  event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
-  event.audio.volume = volume;
-  event.audio.play();
+  soundManager.play(event.target.getAttribute('file-name', {volume: volume}));
+  // event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
+  // event.audio.volume = volume;
+  // event.audio.play();
+
+
+
   if (nowPlaying) {
     mobilePlaying(event.target)
   }
@@ -197,9 +221,15 @@ window.addEventListener('keydown', ()=> {
   button.classList.contains('white') ? button.classList.toggle('white-click') : button.classList.toggle("black-click");
 
 
-  event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
-  event.audio.volume = volume;
-  event.audio.play();
+  // event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
+  // event.audio.volume = volume;
+  // event.audio.play();
+
+
+  soundManager.play(button.getAttribute('file-name', {volume: volume}));
+
+
+
 
   if(nowPlaying) {
     mobilePlaying(button)
