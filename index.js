@@ -201,10 +201,10 @@ const startPlayingAnim = function(bottomValue) {
   const movingBox = document.querySelector('.notes');
   let axisY = 0;
   const move = setInterval(()=> {
-    movingBox.style.transform = `translateY(${axisY += 0.5}px)`;
+    movingBox.style.transform = `translateY(${axisY += 1}px)`;
     console.log(bottomValue, axisY)
     if(bottomValue < axisY)  clearInterval(move);
-  },4);
+  },40);
 }
 
 
