@@ -54,7 +54,7 @@ background: radial-gradient(circle, rgba(255,225,104,1) 0%, rgba(200,172,43,1) 8
     right: 0;
     border-radius: 20px;
     background: rgba(130, 130, 130, 0.541);
-    background: radial-gradient(circle, rgba(130, 130, 130, 0.685) rgba(59, 59, 59, 0.527) 100%);
+    background: radial-gradient(circle, rgba(206, 206, 206, 0.788) rgba(59, 59, 59, 0.527) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
