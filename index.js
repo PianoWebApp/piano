@@ -37,23 +37,23 @@ let previousNote;
 
 //preload audio
 
-// const audioArray = new Array();
-// buttonsArray.forEach(el => {
-//   const audio = new Audio();
-//   audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
-//   audioArray.push(audio);
-// })
-soundManager.setup({
-  useFastPolling: true,
-  useHighPerformance: true,
-  onready: function() {
-    buttonsArray.forEach(el => {
-      soundManager.createSound({
-        id: el.getAttribute('file-name'),
-        url: `./sounds/${el.getAttribute('file-name')}.mp3`
-      })
-    });
-    }});
+const audioArray = new Array();
+buttonsArray.forEach(el => {
+  const audio = new Audio();
+  audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
+  audioArray.push(audio);
+});
+// soundManager.setup({
+//   useFastPolling: true,
+//   useHighPerformance: true,
+//   onready: function() {
+//     buttonsArray.forEach(el => {
+//       soundManager.createSound({
+//         id: el.getAttribute('file-name'),
+//         url: `./sounds/${el.getAttribute('file-name')}.mp3`
+//       })
+//     });
+//     }});
 // buttonsArray.forEach(el => {
 //   soundManager.createSound({
 //     id: el.getAttribute('file-name'),
@@ -148,10 +148,10 @@ const mobilePlaying = function (button) {
 
 buttons.addEventListener('mousedown', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
-  soundManager.play(event.target.getAttribute('file-name', {volume: volume}));
-  // event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
-  // event.audio.volume = volume;
-  // event.audio.play();
+  // soundManager.play(event.target.getAttribute('file-name', {volume: volume}));
+  event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
+  event.audio.volume = volume;
+  event.audio.play();
 
 
 
@@ -221,12 +221,12 @@ window.addEventListener('keydown', ()=> {
   button.classList.contains('white') ? button.classList.toggle('white-click') : button.classList.toggle("black-click");
 
 
-  // event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
-  // event.audio.volume = volume;
-  // event.audio.play();
+  event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
+  event.audio.volume = volume;
+  event.audio.play();
 
 
-  soundManager.play(button.getAttribute('file-name', {volume: volume}));
+  // soundManager.play(button.getAttribute('file-name', {volume: volume}));
 
 
 
