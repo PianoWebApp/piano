@@ -24,6 +24,9 @@ const mainMenuList = document.querySelector('.main-menu__list')
 let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
 const notesBox = document.querySelector('.notes');
 
+
+
+
 //preload audio
 
 const audioArray = new Array();
@@ -191,6 +194,21 @@ const createNoteObject = function () {
 
 
 //GENERATE NOTES ON CONTAINER ############################################################
+let nowPlaying = false;
+
+
+const startPlayingAnim = function(bottomValue) {
+  const movingBox = document.querySelector('.notes');
+  let axisY = 0;
+  setInterval(()=> {
+    movingBox.style.transform = `translateY(${axisY--}px)`;
+
+  },4);
+}
+
+
+
+
 const notesGenerator = function(notesArray) {
   const noteContainersObj = createNoteObject();
   console.log(noteContainersObj);
@@ -210,6 +228,7 @@ const notesGenerator = function(notesArray) {
     if(el[2] !== 'tgth') bottomInterval+= elHeight;
   });
   document.querySelector('.notes').style.height = bottomInterval + 'px';
+  startPlayingAnim (bottomInterval);
 };
 
 const songsObjs = {
