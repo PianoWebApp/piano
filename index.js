@@ -23,6 +23,7 @@ const buttonsArray = [...buttons.querySelectorAll('button')];
 const mainMenuList = document.querySelector('.main-menu__list')
 let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
 const notesBox = document.querySelector('.notes');
+const svgBox = document.querySelector('.svg-ready-box');
 let nowPlaying = false;
 let movingSpeed = 12;
 let noteContainersObj;
@@ -74,7 +75,19 @@ const headerShowAnimation = anime({
   }
 });
 
-  
+const readyTextDrawingAnimation = anime({
+  targets: '.svg-ready-box path',
+  strokeDashoffset: [anime.setDashoffset, 0],
+  easing: 'easeInOutSine',
+  duration: 1500,
+  delay: 500,
+  direction: 'alternate',
+  autoplay: false,
+  changeComplete: function (anim) {
+    setTimeout(()=> svgBox.style.display = 'none', 1500)
+    
+  }
+})
 
 //volume-change
 volumeInput.value = volume * 100
@@ -252,6 +265,21 @@ const startPlayingAnim = function(bottomValue) {
       slideNotesAnimation.play();
     }, 3200);
   });
+  svgBox.style.display = 'block';
+  readyTextDrawingAnimation.play();
+  //##############################################################
+  //##############################################################
+
+  //##############################################################
+
+  //##############################################################
+
+  //##############################################################
+
+  //##############################################################
+
+  //##############################################################
+
   setTimeout(() => {
     slideNotesAnimation.play();
   }, 3200);
