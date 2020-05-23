@@ -23,7 +23,12 @@ const buttonsArray = [...buttons.querySelectorAll('button')];
 const mainMenuList = document.querySelector('.main-menu__list')
 let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
 const notesBox = document.querySelector('.notes');
-
+let nowPlaying = false;
+let movingSpeed = 12;
+let noteContainersObj;
+let globalNotes;
+let curentNoteIndex = 0;
+let previousNote;
 
 
 
@@ -69,6 +74,7 @@ const headerShowAnimation = anime({
   }
 });
 
+  
 
 //volume-change
 volumeInput.value = volume * 100
@@ -77,7 +83,32 @@ volumeInput.addEventListener('change', ()=> {
   localStorage.setItem('volume', volume);
 })
 
+//mobile playing
+const keysObj = new Object();
+const fileNamesObj = new Object();
+console.log(buttonsArray)
+buttonsArray.forEach(el => {
+  el.isPlaying = false
+  keysObj[el.getAttribute('key')] = el;
+  fileNamesObj[el.getAttribute('file-name')] = el;
+});
 
+const mobilePlaying = function (button) {
+  console.log(button.getAttribute('file-name'));
+  console.log(globalNotes[curentNoteIndex][0]);
+  if(button.getAttribute('file-name') !== globalNotes[curentNoteIndex][0]) return;
+  const curentNote = globalNotes[++curentNoteIndex];
+  previousNote.classList.remove('playing-note');
+  if(curentNote) {
+  const nextPlayingNote = fileNamesObj[curentNote[0]];
+  nextPlayingNote.classList.add('playing-note');
+  previousNote = nextPlayingNote;
+  }
+  else {nowPlaying = false; return};
+  
+  
+  
+}
 
 //playing sounds
 
@@ -87,6 +118,9 @@ buttons.addEventListener('mousedown', ()=> {
   event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
   event.audio.volume = volume;
   event.audio.play();
+  if (nowPlaying) {
+    mobilePlaying(event.target)
+  }
 });
 
 
@@ -140,13 +174,7 @@ changeBg(localStorage.getItem('bgImage'));
 
 
 
-const keysObj = new Object();
-console.log(buttonsArray)
-buttonsArray.forEach(el => {
-  el.isPlaying = false
-  keysObj[el.getAttribute('key')] = el;
 
-})
 
 window.addEventListener('keydown', ()=> {
   const button = keysObj[event.code];
@@ -159,6 +187,10 @@ window.addEventListener('keydown', ()=> {
   event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
   event.audio.volume = volume;
   event.audio.play();
+
+  if(nowPlaying) {
+    mobilePlaying(button)
+  }
 });
 
 window.addEventListener('keyup', ()=>{
@@ -194,18 +226,42 @@ const createNoteObject = function () {
 
 
 //GENERATE NOTES ON CONTAINER ############################################################
-let nowPlaying = false;
+
 
 
 const startPlayingAnim = function(bottomValue) {
-  const movingBox = document.querySelector('.notes');
-  let axisY = 0;
-  const move = setInterval(()=> {
-    movingBox.style.transform = `translateY(${axisY += 1}px)`;
-    console.log(bottomValue, axisY)
-    if(bottomValue < axisY)  clearInterval(move);
-  },40);
-}
+  const slideNotesAnimation = anime({
+    targets: '.notes',
+    autoplay: false,
+    translateY: bottomValue + 20 + 'px',
+    duration: bottomValue*movingSpeed,
+    easing: 'linear',
+    changeComplete: function(anim) {
+      nowPlaying = false;
+      document.querySelector('.buttons').classList.toggle('buttons-playing');
+      const notesContainer = document.querySelector('.notes');
+      console.log(notesContainer)
+      document.querySelector('.note-box').classList.add('note-box__hiden')
+      notesContainer.style.transform = 'unset';
+      [...notesContainer.querySelectorAll('.notes-column')].forEach(el => el.innerHtml = '');
+    }
+  });
+  wrapperMenu.addEventListener('click', ()=> {
+    if(wrapperMenu.classList.contains('open')) slideNotesAnimation.pause();
+    else setTimeout(() => {
+      slideNotesAnimation.play();
+    }, 2000);
+  });
+  setTimeout(() => {
+    slideNotesAnimation.play();
+  }, 2000);
+
+  // const move = setInterval(()=> {
+  //   movingBox.style.transform = `translateY(${axisY += 1}px)`;
+  //   console.log(bottomValue, axisY)
+  //   if(bottomValue < axisY)  clearInterval(move);
+  // },40);
+};
 
 
 
@@ -216,7 +272,7 @@ const notesGenerator = function(notesArray) {
   
   let bottomInterval = 100;
   notesArray.forEach(el => {
-    let elHeight = 100;
+    let elHeight = 50;
     if (el[2]) elHeight = +el[2];
     const div = document.createElement('div');
     noteContainersObj[el[0]].append(div);
@@ -226,6 +282,7 @@ const notesGenerator = function(notesArray) {
     const keyText = document.createElement('p');
     keyText.textContent = noteContainersObj[el[0]].getAttribute('keyboard-key');
     div.append(keyText);
+    keyText.classList.add('key-text');
     if(el[2] !== 'tgth') bottomInterval+= elHeight;
   });
   document.querySelector('.notes').style.height = bottomInterval + 'px';
@@ -233,7 +290,7 @@ const notesGenerator = function(notesArray) {
 };
 
 const songsObjs = {
-  '1':'w1,100|w2|w3|w4|w5|w6|w7|w8|w9|w10|w11|w12|w13|w14|w15',
+  '1':'w1,100|w2|w3|w4|w5|w6|w7|w8|w9|w10|w11|w12|w13|w14|w15|b1',
 }
 const parseNotes = function(string) {
   const notes = string.split('|');
@@ -241,13 +298,21 @@ const parseNotes = function(string) {
 }
 const startNotes = function(noteString) {
   console.log(1);
-  // const notes
+  noteContainersObj = null;
+  globalNotes = null;
+  curentNoteIndex = 0;
   const notes = parseNotes(noteString);
   console.log(notes);
       wrapperMenu.classList.remove('open');
       headerShowAnimation.play();
   if (header.offsetWidth < 1200) {
-    console.log(12)
+    noteContainersObj = createNoteObject();
+    nowPlaying = true;
+    globalNotes = notes;
+    const curentNote = globalNotes[curentNoteIndex];
+    const nextPlayingNote = fileNamesObj[curentNote[0]];
+    nextPlayingNote.classList.add('playing-note');
+    previousNote = nextPlayingNote;
   }
   else {
       buttons.classList.add('buttons-playing');
@@ -257,7 +322,7 @@ const startNotes = function(noteString) {
   }
 
 mainMenuList.addEventListener('click', ()=> {
-  if(event.target.nodeName !== 'LI') return;
+  if(event.target.nodeName !== 'LI' || nowPlaying) return;
   const songName = event.target.getAttribute('music-name');
   const notes = songsObjs[songName];
   if(notes) startNotes(notes);

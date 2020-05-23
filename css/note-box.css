@@ -5,22 +5,21 @@
     --box-width: 60%;
 }
 .buttons-playing {
-    position: absolute;
     width: var(--box-width);
     height: 40%;
     bottom: 15%;
-    left: 50%;
-    transform: translateX(-50%);
     margin: unset;
 }
-
+.playing-note {
+background: rgb(255,225,104);
+background: radial-gradient(circle, rgba(255,225,104,1) 0%, rgba(200,172,43,1) 81%);
+}
 .note-box {
     margin: unset;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #222222;
     width: var(--box-width);
     height: 45%;
     margin: 0 auto;
@@ -32,7 +31,6 @@
 .notes {
     width: 100%;
     height: 10px;
-    background-color: yellowgreen;
     position: absolute;
     bottom: 0;
     display: flex;
@@ -45,17 +43,25 @@
 .notes-white {
     height: 100%;
     position: relative;
-    background-color: #fff;
 }
 .notes-black {
     height: 100%;
     position: absolute;
-    background-color: #000000;
 }
 .note-block {
+    position: absolute;
+    left: 0;
+    right: 0;
     border-radius: 20px;
-    background: rgba(130,130,130,1);
-    background: radial-gradient(circle, rgba(130,130,130,1) 0%, rgba(59,59,59,1) 100%);
+    background: rgba(130, 130, 130, 0.541);
+    background: radial-gradient(circle, rgba(130, 130, 130, 0.685) rgba(59, 59, 59, 0.527) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.key-text {
+    font-size: 20px;
+    color: rgb(27, 27, 27);
 }
 
 
