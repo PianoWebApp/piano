@@ -212,8 +212,8 @@ buttons.addEventListener('mousedown', ()=> {
   else {
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
   if(!audio.isPaused()) {
-    event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
-    event.audio.play()
+    audio.stop()
+    audio.play()
   }
   else {
     audio.play()
@@ -285,7 +285,7 @@ changeBg(localStorage.getItem('bgImage'));
 
 
 window.addEventListener('keydown', ()=> {
-  if(!soundsIsLoaded) loadAudio();
+  if(!soundsIsLoaded) return loadAudio();
   const button = keysObj[event.code];
   if (!button || button.isPlaying) return;
   button.isPlaying = true;
@@ -306,8 +306,9 @@ window.addEventListener('keydown', ()=> {
   else {
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
   if(!audio.isPaused()) {
-    event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
-    event.audio.play()
+    audio.fadaIn()
+    audio.stop()
+    audio.play()
   }
   else {
     audio.play() 
