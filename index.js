@@ -33,6 +33,7 @@ let globalNotes;
 let curentNoteIndex = 0;
 let previousNote;
 let soundsIsLoaded = false;
+let dynamicMode = true;
 
 
 //load sound-manager
@@ -205,6 +206,10 @@ buttons.addEventListener('mousedown', ()=> {
   // event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
   // event.audio.volume = volume;
   // event.audio.play();
+  if (dynamicMode) {
+    event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
+  }
+  else {
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
   if(!audio.isPaused()) {
     event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
@@ -212,6 +217,7 @@ buttons.addEventListener('mousedown', ()=> {
   }
   else {
     audio.play()
+  }
   }
   // console.log(event.target.getAttribute('file-name'));
   
@@ -294,7 +300,10 @@ window.addEventListener('keydown', ()=> {
   // const sound = buzzAudioFiles[button.getAttribute('file-name')];
   // sound.setVolume(volume)
   // sound.audio.play();
-
+  if (dynamicMode) {
+    event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
+  }
+  else {
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
   if(!audio.isPaused()) {
     event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
@@ -302,6 +311,7 @@ window.addEventListener('keydown', ()=> {
   }
   else {
     audio.play() 
+  }
   }
   // soundManager.play(button.getAttribute('file-name', {volume: volume}));
 
