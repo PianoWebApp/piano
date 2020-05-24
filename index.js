@@ -37,6 +37,14 @@ let previousNote;
 
 //preload audio
 
+const mySound = new buzz.sound("/sounds/w1.mp3", {
+  preload: true,
+  autoplay: true,
+  loop: true,
+  volume: 0,
+});
+
+
 const audioArray = new Array();
 buttonsArray.forEach(el => {
   const audio = new Audio();
@@ -160,6 +168,7 @@ buttons.addEventListener('mousedown', ()=> {
   // buzzAudioFiles[event.target.getAttribute('file-name')].play()
 
   event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`);
+  event.audio.setVolume(volume)
   event.audio.play();
 
 
@@ -234,6 +243,7 @@ window.addEventListener('keydown', ()=> {
   // event.audio.play();
 
   event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3`);
+  event.audio.setVolume(volume);
   event.audio.play();
 
 
@@ -351,8 +361,8 @@ const notesGenerator = function(notesArray) {
     const keyText = document.createElement('p');
     keyText.textContent = noteContainersObj[el[0]].getAttribute('keyboard-key');
     keyText.classList.add('key-text');
-    }
     div.append(keyText);
+  }
     if(el[2] !== 'tgth') bottomInterval+= elHeight;
   });
   document.querySelector('.notes').style.height = bottomInterval + 'px';
