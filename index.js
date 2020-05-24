@@ -269,6 +269,8 @@ buttons.addEventListener('mousedown', ()=> {
 
 
   wrapperMenu.addEventListener('click', function(){
+    if (wrapperMenu.classList.contains('open')) volume = +localStorage.getItem('volume')
+    else volume = 0;
   wrapperMenu.classList.toggle('open'); 
   headerShowAnimation.play(); 
 });
@@ -510,3 +512,5 @@ mainMenuList.addEventListener('click', ()=> {
   const notes = songsObjs[songName];
   if(notes) startNotes(notes);
 });
+
+
