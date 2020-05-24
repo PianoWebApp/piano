@@ -25,32 +25,39 @@ const mainMenuList = document.querySelector('.main-menu__list')
 let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.8;
 const notesBox = document.querySelector('.notes');
 const svgBox = document.querySelector('.svg-ready-box');
+const loadingScreen = document.querySelector('.loading-screen')
 let nowPlaying = false;
 let movingSpeed = 12;
 let noteContainersObj;
 let globalNotes;
 let curentNoteIndex = 0;
 let previousNote;
+let soundsIsLoaded = false;
 
 
 //load sound-manager
 
 //preload audio
+const buzzAudioFiles = new Object()
+const loadAudio = function () {
+  soundsIsLoaded = true;
+  pianoTextAnimation.play();
+  hideLoadingScreen.play()
+  buttonsArray.forEach(el => {
+    buzzAudioFiles[el.getAttribute('file-name')] = new buzz.sound(`./sounds/${el.getAttribute('file-name')}.mp3`,
+     {webAudioApi: true, preload: true});
+  });
+  console.log(buzzAudioFiles);
+  
+}
 
-const mySound = new buzz.sound("/sounds/w1.mp3", {
-  preload: true,
-  autoplay: true,
-  loop: true,
-  volume: 0,
-});
 
-
-const audioArray = new Array();
-buttonsArray.forEach(el => {
-  const audio = new Audio();
-  audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
-  audioArray.push(audio);
-});
+// const audioArray = new Array();
+// buttonsArray.forEach(el => {
+//   const audio = new Audio();
+//   audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
+//   audioArray.push(audio);
+// });
 
   // const audio = new Audio();
   // audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
@@ -120,7 +127,40 @@ const readyTextDrawingAnimation = anime({
     setTimeout(()=> svgBox.style.display = 'none', 1500)
     
   }
+});
+
+const pianoTextAnimation = anime({
+  targets: '.piano-text-svg-box svg path',
+  strokeDashoffset: [anime.setDashoffset, 0],
+  easing: 'easeInOutSine',
+  duration: 1500,
+  delay: 1000,
+  direction: 'alternate',
+  changeComplete: function(anim) {
+    pianoTextAnimation.pause()
+    setTimeout(() => {
+    const pathArray = document.querySelector('.piano-text-svg-box').querySelectorAll('path')
+    pathArray.forEach(el => {
+      el.style.fillOpacity = 1
+    })
+  }, 500);
+  }
+});
+
+const hideLoadingScreen = anime({
+  targets: '.loading-screen',
+  easing: 'linear',
+  opacity: 0,
+  duration: 1000,
+  autoplay: false,
+  changeComplete: function(anim) {
+    setTimeout(()=> loadingScreen.style.display = 'none', 500)
+  }
 })
+
+loadingScreen.addEventListener('click', loadAudio);
+
+
 
 //volume-change
 volumeInput.value = volume * 100
@@ -165,11 +205,19 @@ buttons.addEventListener('mousedown', ()=> {
   // event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
   // event.audio.volume = volume;
   // event.audio.play();
-  // buzzAudioFiles[event.target.getAttribute('file-name')].play()
+  const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
+  // if(!audio.isPaused()) {
+  //   event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
+  //   event.audio.play()
+  // }
 
-  event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`);
-  event.audio.setVolume(volume)
-  event.audio.play();
+    audio.play()
+
+  // console.log(event.target.getAttribute('file-name'));
+  
+  // const sound = buzzAudioFiles[event.target.getAttribute('file-name')];
+  // sound.setVolume(volume)
+  // sound.audio.play();
 
 
   if (nowPlaying) {
@@ -231,6 +279,7 @@ changeBg(localStorage.getItem('bgImage'));
 
 
 window.addEventListener('keydown', ()=> {
+  if(!soundsIsLoaded) loadAudio();
   const button = keysObj[event.code];
   if (!button || button.isPlaying) return;
   button.isPlaying = true;
@@ -242,9 +291,9 @@ window.addEventListener('keydown', ()=> {
   // event.audio.volume = volume;
   // event.audio.play();
 
-  event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3`);
-  event.audio.setVolume(volume);
-  event.audio.play();
+  const sound = buzzAudioFiles[button.getAttribute('file-name')];
+  sound.setVolume(volume)
+  sound.audio.play();
 
 
   // soundManager.play(button.getAttribute('file-name', {volume: volume}));

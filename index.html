@@ -9,9 +9,33 @@
         <link rel="stylesheet" href="./css/note-box.css">
         <link rel="shortcut icon" href="./img/icons/piano-icon.ico" type="image/x-icon" />
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
-        <style></style>
     </head>
     <body>
+        <div class="loading-screen">
+            <div class="loading-screen-content-box">
+            <div class="piano-text-svg-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335 700.031">
+                    <path fill = "transparent" stroke="#222222" stroke-width="7" id="P" class="cls-1" d="M118,166.063c122.223-.744,249.294-17.581,297.186,59.213,56.2,90.111,51.859,291.593-27.1,352.366-36.007,27.712-92,29.471-156.821,29.121Q230.776,735.369,230.292,864H118V166.063ZM231.26,280.606V484.454c36.22,0.585,70.152,1.086,85.187-19.414,28.01-38.193,24.525-151.056-11.617-175.7C289.112,278.625,257.23,280.2,231.26,280.606Z" transform="translate(-118 -163.969)"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 719">
+                    <path fill = "transparent" stroke="#222222" stroke-width="7" id="I" class="cls-1" d="M336,154l117,1q-0.5,358.964-1,718H336V154Z" transform="translate(-336 -154)"/>
+                  </svg>
+                                    
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 421 719">
+                    <path fill = "transparent" stroke="#222222" stroke-width="7" id="A" class="cls-1" d="M1104,863H985q-13-73.992-26-148l-144,1q-12.5,73.493-25,147H683L839,144H956Q1030,503.464,1104,863ZM838,590h99v-3L887,307h-1Q862,448.486,838,590Z" transform="translate(-683 -144)"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 351 719">
+                    <path fill = "transparent" stroke="#222222" stroke-width="7" id="N" class="cls-1" d="M743,144H872l130,436h1V144l91,1q-0.495,358.964-1,718H989L835,355h-1q-0.5,253.974-1,508H743V144Z" transform="translate(-743 -144)"/>
+                  </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.652 742.406">
+                    <path fill = "transparent" stroke="#222222" stroke-width="7" id="O" class="cls-1" d="M900,133c44.575-.314,74.938,5.642,101,23,36.35,24.212,59.08,65.353,76,109,58.02,149.678,40.87,494.543-60,575-21.972,17.526-46.612,28.352-81,34-29.008,4.764-57.864-3.474-76-11-97.3-40.38-109.129-148.587-128-269-4.982-31.791-9.617-89.134-4-125q3-45,6-90c15.453-89.455,31.85-171.9,91-217,13.193-10.059,30.58-18.713,48-24Zm8,131c-14.124,7.721-23.974,12.471-32,26-31.353,52.849-32.662,265.051-19,346,7.232,42.848,12.912,119.754,71,107,40.7-8.937,43.819-60.3,51-104,13.906-84.634,12.755-308.041-24-357C945.038,268.73,932.163,263.672,908,264Z" transform="translate(-725.438 -133)"/>
+                  </svg>
+                                    
+                  
+            </div>
+            <p class="loading-screen__text">Нажмите любую клавишу, чтобы продолжить</p>
+            </div>
+        </div>
         <header class = 'site-header'>
         <div class="modal-window">
             <ul class="modal-window__list">
@@ -152,7 +176,7 @@
             </div>
         </main>
         <!-- <script type="module" src="./scripts/buzz.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.2.1/buzz.min.js"></script>
+        <script type="text/javascript" src="./scripts/buzz.min.js"></script>
         <script type="module" src="./scripts/anime.js"></script>
         <script type="module" src="./index.js"></script>
     </body>
