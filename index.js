@@ -34,7 +34,18 @@ let curentNoteIndex = 0;
 let previousNote;
 let soundsIsLoaded = false;
 let dynamicMode = true;
-let audioMode = 'Not stable'
+let audioMode = 'Not stable';
+audioMode = localStorage.getItem('mode');
+
+const CaMd = function(mode) {
+  if(mode.toLowerCase() === 'n') {
+    audioMode = 'Not stable';
+  }
+  else {
+    audioMode = 'Stable';
+  }
+  localStorage.setItem('mode', audioMode);
+};
 
 
 //load sound-manager
@@ -265,6 +276,12 @@ buttons.addEventListener('mousedown', ()=> {
 //music list builder
 const liArray = document.querySelectorAll('.main-menu__item')
 searchInput.addEventListener('input', ()=> {
+  if(searchInput.value === 'CaMd(n)') {
+    CaMd('n');
+  }
+  if(searchInput.value === 'CaMd(n)') {
+    CaMd('s');
+  }
   let value = searchInput.value.trim().toLowerCase();
     [...liArray].forEach(element => {
       if(element.textContent.toLowerCase().search(value) !== -1) {
