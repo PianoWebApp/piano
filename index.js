@@ -206,13 +206,13 @@ buttons.addEventListener('mousedown', ()=> {
   // event.audio.volume = volume;
   // event.audio.play();
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
-  // if(!audio.isPaused()) {
-  //   event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
-  //   event.audio.play()
-  // }
-
+  if(!audio.isPaused()) {
+    event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
+    event.audio.play()
+  }
+  else {
     audio.play()
-
+  }
   // console.log(event.target.getAttribute('file-name'));
   
   // const sound = buzzAudioFiles[event.target.getAttribute('file-name')];
@@ -291,11 +291,18 @@ window.addEventListener('keydown', ()=> {
   // event.audio.volume = volume;
   // event.audio.play();
 
-  const sound = buzzAudioFiles[button.getAttribute('file-name')];
-  sound.setVolume(volume)
-  sound.audio.play();
+  // const sound = buzzAudioFiles[button.getAttribute('file-name')];
+  // sound.setVolume(volume)
+  // sound.audio.play();
 
-
+  const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
+  if(!audio.isPaused()) {
+    event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3`, {webAudioApi: true}).setVolume(volume)
+    event.audio.play()
+  }
+  else {
+    audio.play() 
+  }
   // soundManager.play(button.getAttribute('file-name', {volume: volume}));
 
 
