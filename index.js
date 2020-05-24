@@ -12,6 +12,8 @@ import {anime} from './scripts/anime.js';
 
 
 //variables 4 MUSIC
+window.n = 'n';
+window.s = 's';
 const buttons = document.querySelector('.buttons');
 const mainMenu = document.querySelector('.main-menu');
 const wrapperMenu = document.querySelector('.wrapper-menu');
@@ -37,7 +39,7 @@ let dynamicMode = true;
 let audioMode = 'Not stable';
 audioMode = localStorage.getItem('mode');
 
-const CaMd = function(mode) {
+window.CaMd = function(mode) {
   if(mode.toLowerCase() === 'n') {
     audioMode = 'Not stable';
   }
@@ -45,6 +47,7 @@ const CaMd = function(mode) {
     audioMode = 'Stable';
   }
   localStorage.setItem('mode', audioMode);
+  console.log('%c' + 'Режим успешно изменён', 'font-site: 30px; color: white; padding: 20px; background: rgba(20, 139, 36, 0.726);')
 };
 
 
@@ -59,7 +62,7 @@ const loadAudio = function () {
   pianoTextAnimation.play();
   hideLoadingScreen.play()
   buttonsArray.forEach(el => {
-    buzzAudioFiles[el.getAttribute('file-name')] = new buzz.sound(`./sounds/${el.getAttribute('file-name')}.mp3`,
+    buzzAudioFiles[el.getAttribute('file-name')] = new buzz.sound(`./sounds/optimised/${el.getAttribute('file-name')}.mp3`,
      {webAudioApi: true, preload: true});
   });
   console.log(buzzAudioFiles);
@@ -173,7 +176,7 @@ const hideLoadingScreen = anime({
   duration: 1000,
   autoplay: false,
   changeComplete: function(anim) {
-    setTimeout(()=> loadingScreen.style.display = 'none', 500)
+    setTimeout(()=> loadingScreen.style.display = 'none', 500);
   }
 })
 
@@ -224,7 +227,7 @@ buttons.addEventListener('mousedown', ()=> {
   
   if (audioMode === 'Not stable') {
   if (dynamicMode) {
-    event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
+    event.audio = new buzz.sound(`./sounds/optimised/${event.target.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
   }
   else {
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
@@ -239,7 +242,7 @@ buttons.addEventListener('mousedown', ()=> {
   }
   else {
     event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
-    event.audio.volume = volume;
+    event.audio.volume = volume/100;
     event.audio.play();
   }
   // console.log(event.target.getAttribute('file-name'));
@@ -277,10 +280,10 @@ buttons.addEventListener('mousedown', ()=> {
 const liArray = document.querySelectorAll('.main-menu__item')
 searchInput.addEventListener('input', ()=> {
   if(searchInput.value === 'CaMd(n)') {
-    CaMd('n');
+    window.CaMd('n');
   }
   if(searchInput.value === 'CaMd(n)') {
-    CaMd('s');
+    window.CaMd('s');
   }
   let value = searchInput.value.trim().toLowerCase();
     [...liArray].forEach(element => {
@@ -330,7 +333,7 @@ window.addEventListener('keydown', ()=> {
   // sound.setVolume(volume)
   // sound.audio.play();
   if (dynamicMode) {
-    event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
+    event.audio = new buzz.sound(`./sounds/optimised/${button.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
   }
   else {
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
@@ -348,7 +351,7 @@ window.addEventListener('keydown', ()=> {
   }
   else {
     event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
-  event.audio.volume = volume;
+  event.audio.volume = volume/100;
   event.audio.play();
   }
 
