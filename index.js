@@ -33,7 +33,7 @@ let globalNotes;
 let curentNoteIndex = 0;
 let previousNote;
 let soundsIsLoaded = false;
-let dynamicMode = true;
+let dynamicMode = false;
 
 
 //load sound-manager
