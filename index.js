@@ -43,6 +43,11 @@ buttonsArray.forEach(el => {
   audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
   audioArray.push(audio);
 });
+
+  // const audio = new Audio();
+  // audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
+//  new buzz.sound(`./sounds/${el.getAttribute('file-name')}.mp3`);
+
 // soundManager.setup({
 //   useFastPolling: true,
 //   useHighPerformance: true,
@@ -149,10 +154,13 @@ const mobilePlaying = function (button) {
 buttons.addEventListener('mousedown', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
   // soundManager.play(event.target.getAttribute('file-name', {volume: volume}));
-  event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
-  event.audio.volume = volume;
-  event.audio.play();
+  // event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
+  // event.audio.volume = volume;
+  // event.audio.play();
+  // buzzAudioFiles[event.target.getAttribute('file-name')].play()
 
+  event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3`);
+  event.audio.play();
 
 
   if (nowPlaying) {
@@ -221,8 +229,11 @@ window.addEventListener('keydown', ()=> {
   button.classList.contains('white') ? button.classList.toggle('white-click') : button.classList.toggle("black-click");
 
 
-  event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
-  event.audio.volume = volume;
+  // event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
+  // event.audio.volume = volume;
+  // event.audio.play();
+
+  event.audio = new buzz.sound(`./sounds/${button.getAttribute('file-name')}.mp3`);
   event.audio.play();
 
 
