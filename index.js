@@ -33,14 +33,17 @@ let globalNotes;
 let curentNoteIndex = 0;
 let previousNote;
 let soundsIsLoaded = false;
-let dynamicMode = false;
+let dynamicMode = true;
+let audioMode = 'Not stable'
 
 
 //load sound-manager
 
 //preload audio
+
 const buzzAudioFiles = new Object()
 const loadAudio = function () {
+  if(soundsIsLoaded) return
   soundsIsLoaded = true;
   pianoTextAnimation.play();
   hideLoadingScreen.play()
@@ -53,12 +56,16 @@ const loadAudio = function () {
 }
 
 
-// const audioArray = new Array();
-// buttonsArray.forEach(el => {
-//   const audio = new Audio();
-//   audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
-//   audioArray.push(audio);
-// });
+  const audioArray = new Array();
+buttonsArray.forEach(el => {
+  const audio = new Audio();
+  audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
+  audioArray.push(audio);
+});
+
+
+
+
 
   // const audio = new Audio();
   // audio.src = `./sounds/${el.getAttribute('file-name')}.mp3`;
@@ -203,9 +210,8 @@ const mobilePlaying = function (button) {
 buttons.addEventListener('mousedown', ()=> {
   if (event.target.nodeName !== 'BUTTON') return;
   // soundManager.play(event.target.getAttribute('file-name', {volume: volume}));
-  // event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
-  // event.audio.volume = volume;
-  // event.audio.play();
+  
+  if (audioMode === 'Not stable') {
   if (dynamicMode) {
     event.audio = new buzz.sound(`./sounds/${event.target.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
   }
@@ -218,6 +224,12 @@ buttons.addEventListener('mousedown', ()=> {
   else {
     audio.play()
   }
+  }
+  }
+  else {
+    event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
+    event.audio.volume = volume;
+    event.audio.play();
   }
   // console.log(event.target.getAttribute('file-name'));
   
@@ -292,10 +304,10 @@ window.addEventListener('keydown', ()=> {
   //change style
   button.classList.contains('white') ? button.classList.toggle('white-click') : button.classList.toggle("black-click");
 
+  if (audioMode === 'Not stable') {
 
-  // event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
-  // event.audio.volume = volume;
-  // event.audio.play();
+
+  
 
   // const sound = buzzAudioFiles[button.getAttribute('file-name')];
   // sound.setVolume(volume)
@@ -306,7 +318,6 @@ window.addEventListener('keydown', ()=> {
   else {
   const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
   if(!audio.isPaused()) {
-    audio.fadaIn()
     audio.stop()
     audio.play()
   }
@@ -317,7 +328,12 @@ window.addEventListener('keydown', ()=> {
   // soundManager.play(button.getAttribute('file-name', {volume: volume}));
 
 
-
+  }
+  else {
+    event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
+  event.audio.volume = volume;
+  event.audio.play();
+  }
 
   if(nowPlaying) {
     mobilePlaying(button)
