@@ -203,6 +203,7 @@ buttonsArray.forEach(el => {
 
 const mobilePlaying = function (button) {
   console.log(button.getAttribute('file-name'));
+  console.log(globalNotes)
   console.log(globalNotes[curentNoteIndex][0]);
   if(button.getAttribute('file-name') !== globalNotes[curentNoteIndex][0]) return;
   const curentNote = globalNotes[++curentNoteIndex];
@@ -483,21 +484,27 @@ const parseNotes = function(string) {
   return notes.map(el => el.split(','))
 }
 const startNotes = function(noteString) {
-  if (nowPlaying) return;
   volume = localStorage.getItem('volume');
-  alert(volume)
+  console.log('VOLUME ' + volume)
   console.log(1);
-  noteContainersObj = null;
-  globalNotes = null;
-  curentNoteIndex = 0;
   const notes = parseNotes(noteString);
   console.log(notes);
       wrapperMenu.classList.remove('open');
       headerShowAnimation.play();
   if (header.offsetWidth < 1200) {
+    noteContainersObj = null;
+    globalNotes = null;
+    curentNoteIndex = 0;
     noteContainersObj = createNoteObject();
     nowPlaying = true;
     globalNotes = notes;
+    for (let i = 0; i < globalNotes.length; i++) {
+      if(globalNotes[i][2] === 'empty') {
+        console.log('splice')
+        globalNotes.splice(i,1)
+      }
+      
+    }
     const curentNote = globalNotes[curentNoteIndex];
     const nextPlayingNote = fileNamesObj[curentNote[0]];
     nextPlayingNote.classList.add('playing-note');
