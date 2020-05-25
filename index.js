@@ -36,8 +36,11 @@ let curentNoteIndex = 0;
 let previousNote;
 let soundsIsLoaded = false;
 let dynamicMode = true;
-let audioMode = 'Not stable';
+let audioMode = 'Stable';
 audioMode = localStorage.getItem('mode');
+if(header.offsetWidth < 1000) {
+  audioMode = 'Not stable';
+}
 
 window.CaMd = function(mode) {
   if(mode.toLowerCase() === 'n') {
@@ -253,7 +256,7 @@ buttons.addEventListener('mousedown', ()=> {
   // sound.audio.play();
 
 
-  if (nowPlaying) {
+  if (nowPlaying && header.offsetWidth < 1200) {
     mobilePlaying(event.target)
   }
 });
@@ -358,7 +361,7 @@ window.addEventListener('keydown', ()=> {
   event.audio.play();
   }
 
-  if(nowPlaying) {
+  if(nowPlaying && header.offsetWidth < 1200) {
     mobilePlaying(button)
   }
 });
