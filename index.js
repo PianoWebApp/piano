@@ -29,7 +29,7 @@ const notesBox = document.querySelector('.notes');
 const svgBox = document.querySelector('.svg-ready-box');
 const loadingScreen = document.querySelector('.loading-screen')
 let nowPlaying = false;
-let movingSpeed = 12;
+let movingSpeed = 11;
 let noteContainersObj;
 let globalNotes;
 let curentNoteIndex = 0;
@@ -457,7 +457,7 @@ const notesGenerator = function(notesArray) {
   
   let bottomInterval = 100;
   notesArray.forEach(el => {
-    let elHeight = 100;
+    let elHeight = 85;
     if (el[1]) elHeight = +el[1];
     const div = document.createElement('div');
     if(el[0] !== 'empty') noteContainersObj[el[0]].append(div);
@@ -477,7 +477,16 @@ const notesGenerator = function(notesArray) {
 
 const songsObjs = {
   '1':'w1,100|w2|w3|w4|w5|w6|w7|w8|w9|w10|w11|w12|w13|w14|w15|b1',
-  '2':'w1,100|w2,100,|w3,100|w1,150,empty|w6,150|w8,150'
+  '2':'w1|w1|w2|w2|w3|w5|w3|w1|w1|w1|w2|w4|w3|w1|w1|w1|w2|w2|w3|w5|w3|w1|w6|w2|w4|w3|w1|w5|w6|w7|w7|w5|w5|w6|w7|w5|w4|w3|w4|w5|w6|w7|w6|w2|w4|w3|w1',
+  '3':'b3,90|b5,90|b4,90|b2,90|w1,40,empty|b3,90|b5,90|b4,90|b2,90|b1,70|b5,70|b4,50|b2,50|b3,50|w1,80,empty|b5,80|b4,50|b2,50|b1,50|w1,80,empty|b5,80|b4,50|b2,50|b3,50|w1,80,empty|b5,80|b4,50|b2,50|b1,50|w1,80,empty|b5,80|b1,50|b2,50|b3,50|b5,70|b4,60|b2,90|b3,60|b1,60',
+  '4':'w4|w5|w6|w1|w4|w6|w6|w5|w4|w5|w4|w3|w4|w4|w4|w4|w4|w3|w2|w3|w4|w3|w2|w1|w1|w1|w2|w2|w2|w2|w2|w1|w1|w1|w5|w4|w4|w6|w6|w6|b5|w4|w4|w6|w5|w1|w1|w1|w1|w1|w2|w1|w1|w4|w4|w4|w6|w6|w6|w6|w4|w4|w6|w6|w5|w4|w4|w4|w4|w4|w4|w4|w4|w1|w1|w6|w4|w4|b5|b5|b5|b5|w4|w4|w5|w1|w1|w1|w1|w1|w2|w1|w1|w1|w1|w1|w4|w4|w4|w4|w2|w1|w1|w1|w1|w2|w2|w2|w2|w1|w1|w5|w4|w6|w6|b5|w4|w4|w6|w5|w4|w5|w6|w1|w4|w6|w6|w5|w4|w5|w4|w3|w4|w4|w4|w2|w2|w2|w2|w2|w1|w1|w1|w5|w4|w1|w6|w6|w6|b5|w4|w4|w6|w5|w4|w5|w6|w1|w4|w6|w6|w5|w4|w5|w4|w3|w4|w4|w4|w4|w4|w3|w4|w3|w4|w3|w2|w1|w1|w1|w2',
+  '5':'w7,80|w6,80|b4,80|w3,80|b3,80|b3,80|w7,80|w6,80|b4,50|b4,50|b4,50|w7,80|w6,80|b4,80w6,50|b4,50|w6,50|b4,50|w6,50|w7,80|w6,80|b4,80|b4,80|b4,80|w7,80|w6,50|b4,50|w6,50|b4,50|w6,50|b4,50|w6,50|w6,50|b4,50',
+  '6':'w9|w9|w9|b8|w10|w9|w10|b8|w9|w9|b8|w13|w14|w14|w13|b8|b8|w9|w10|w9|w10|b8|w9|w1,70,empty|w9|w14|w13|b8|b8|w9|w10|w9|w10|w14|w13|b8|b8|w13|w14|w1,70,empty|w14|w13|b8|b8|w9|w10|w9|w10|b8|w9|w1,70,empty|w9',
+  '7':'w1|w1|w2|w1|w4|w3|w1,50|w1,50|w2|w1|w5|w4|w1,50|w1,50|w6|w4|w3|w2|b5|b5|w6|w4|w5|w4|w1,70,empty|w1,50|w1,50|w2|w1|w4|w3|w1,70,empty|w1|w1|w2|w1|w5|w4|w1,50|w1,50|w6|w4|w3|w2|b5|b5|w6|w4|w5|w4|w1,70,empty',
+  '8':'w1,70,70,empty|w4,70|w4,70|b1,70|w1,70|w1,70|w1,70|w1,70|w4,70|b1,70|w4,70|b1,70|w1,70|w1,70|w1,70|b1,70|w1,70|w4,70|w4,70|b1,70|w1,70|w1,70|w1,70|w1,70|w1,70,empty|w4,70|b1,70|w4,70|b1,70|w1,70|w1,70|w1,70|b1,70|w1,70',
+  '9':'w5,60|w1,60|b2,60|w4,60|w5,60|w1,60|b2,60|w4,60|w2,60|w4,60|b2,60|w2,60|w4,60|w1,70,empty|b2,60|w2,60|w1,60|w1,70,empty|w5,60|w1,60|b2,60|w4,60|w5,60|w1,60|b2,60|w4,60|w2,60|w1,70,empty|w4,60|w1,70,empty|w2,60|b2,60|w2,60',
+  '10':'w6|b5|b5|w6|w6|w5|w6|b5|b5|w6|w6|w5|w1|w4|w4|w3|w4|w1|w2|w4|w4|w6|w5|w4|w5|w3|w5|w6|w5|w4|w5|w6|w2|w1|w2|w4|w5|w1|w4|w4|w3|w4|w2|w4|w4|w6|w5|w4|w5|w3|w5|w6|w5|w4|w5|w6|w2|b5|w6|w5|w4|w1|w1|w4|w4|w5|w6|b5|b5|w6|w6|w4|w4|w4|w6|w5|w4|w5|w1|w4|w4|w3|w4|w1|w2|w4|w4|w6|w5|w4|w5|w6|b5|w4|w6|w5|w4|w1|w1|w1|w1|w4|w3|w4|w6|w5|w6|b5|w5|w6|w5|w6|w5|w3|w4|w5|w2|w5|w6|w5|w3|w4|b5|b5|w5|b4|b5|w4|w4|b4|b5|w6|w1|w4|w4|w3|w4|w1|w2|w4|w4|w6|w5|w4|w5|w5|w3|w5|w6|w5|w4|w6|w6|w2|w1|w2|w4|w5|w6|b5|w4|w4|w5|w6',
+  '11':'w3|w4|w6|w5|w5|w5|w5|w6|w6|w6|b5|b5|b5|w6|b5|w6|w5|w6|w4|w6|w4|w2|w4|w3|w2|w3|w2|b1|w2|w5|w5|w5|w5|w4|w3|w4|w4|w4|w4|w3|w2|w3|w3|w3|w3|w4|w5|w6|w5|w5|w5|w5|w4|w3|w4|w4|w4|w4|w3|w2|w3|w3|w3|w4|w4|w4|w3|w2|w2|w2|w2|w3|w4|w6|w5|w5|w5|w5|w6|w6|w6|b5|b5|b5|w6|b5|w6|w5|w6|w4|w6|w4|w2|w4|w3|w2|w3|w2|b1|w2|w2'
 }
 const parseNotes = function(string) {
   const notes = string.split('|');
