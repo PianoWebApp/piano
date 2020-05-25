@@ -139,3 +139,8 @@ background: radial-gradient(circle, rgba(255,225,104,1) 0%, rgba(200,172,43,1) 8
         height: 40%;
     }
 }
+@media screen and (max-width: 720px) {
+    .piano-text-svg-box svg {
+        height: 20%;
+    }
+}
