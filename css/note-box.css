@@ -87,6 +87,7 @@ background: radial-gradient(circle, rgba(255,225,104,1) 0%, rgba(200,172,43,1) 8
     display: flex;
     justify-content: center;
     align-items: center;
+    border: solid #222222 2px;
 }
 .key-text {
     font-size: 20px;
@@ -133,5 +134,8 @@ background: radial-gradient(circle, rgba(255,225,104,1) 0%, rgba(200,172,43,1) 8
 @media screen and (max-width:1200px) {
     .note-box {
         display: none;
+    }
+    .piano-text-svg-box svg {
+        height: 40%;
     }
 }

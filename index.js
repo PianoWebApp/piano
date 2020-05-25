@@ -407,12 +407,12 @@ const startPlayingAnim = function(bottomValue) {
     easing: 'linear',
     changeComplete: function(anim) {
       nowPlaying = false;
-      document.querySelector('.buttons').classList.toggle('buttons-playing');
+      document.querySelector('.buttons').classList.remove('buttons-playing');
       const notesContainer = document.querySelector('.notes');
       console.log(notesContainer)
       document.querySelector('.note-box').classList.add('note-box__hiden')
       notesContainer.style.transform = 'unset';
-      [...notesContainer.querySelectorAll('.notes-column')].forEach(el => el.innerHtml = '');
+      [...notesContainer.querySelectorAll('.notes-column')].forEach(el => {el.textContent = ' ';});
     }
   });
   wrapperMenu.addEventListener('click', ()=> {
@@ -456,13 +456,13 @@ const notesGenerator = function(notesArray) {
   
   let bottomInterval = 100;
   notesArray.forEach(el => {
-    let elHeight = 50;
-    if (el[2]) elHeight = +el[2];
+    let elHeight = 100;
+    if (el[1]) elHeight = +el[1];
     const div = document.createElement('div');
     if(el[0] !== 'empty') noteContainersObj[el[0]].append(div);
     div.style.height = elHeight + 'px';
     div.style.bottom = `${bottomInterval}px`;
-    if(el[0] !== 'empty') { div.classList.add('note-block');
+    if(el[2] !== 'empty') { div.classList.add('note-block');
     const keyText = document.createElement('p');
     keyText.textContent = noteContainersObj[el[0]].getAttribute('keyboard-key');
     keyText.classList.add('key-text');
@@ -476,12 +476,16 @@ const notesGenerator = function(notesArray) {
 
 const songsObjs = {
   '1':'w1,100|w2|w3|w4|w5|w6|w7|w8|w9|w10|w11|w12|w13|w14|w15|b1',
+  '2':'w1,100|w2,100,|w3,100|w1,150,empty|w6,150|w8,150'
 }
 const parseNotes = function(string) {
   const notes = string.split('|');
   return notes.map(el => el.split(','))
 }
 const startNotes = function(noteString) {
+  if (nowPlaying) return;
+  volume = localStorage.getItem('volume');
+  alert(volume)
   console.log(1);
   noteContainersObj = null;
   globalNotes = null;
@@ -500,6 +504,7 @@ const startNotes = function(noteString) {
     previousNote = nextPlayingNote;
   }
   else {
+      nowPlaying = true;
       buttons.classList.add('buttons-playing');
       document.querySelector('.note-box').classList.remove('note-box__hiden');
       notesGenerator(notes);
