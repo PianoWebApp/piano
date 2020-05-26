@@ -38,10 +38,7 @@ let soundsIsLoaded = false;
 let dynamicMode = true;
 let audioMode = 'Stable';
 audioMode = localStorage.getItem('mode');
-if(header.offsetWidth < 1000) {
-  audioMode = 'Not stable';
-}
-console.log(header.offsetWidth)
+console.log(header.offsetWidth);
 window.CaMd = function(mode) {
   if(mode.toLowerCase() === 'n') {
     audioMode = 'Not stable';
