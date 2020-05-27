@@ -319,8 +319,7 @@ changeBg(localStorage.getItem('bgImage'));
 
 
 
-window.addEventListener('keydown', ()=> {
-  if(!soundsIsLoaded) return loadAudio();
+window.addEventListener('keydown', ()=> { 
   const button = keysObj[event.code];
   if (!button || button.isPlaying) return;
   button.isPlaying = true;
