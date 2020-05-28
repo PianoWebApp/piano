@@ -357,6 +357,7 @@ button{
     top: 20px;
     left: 0;
     right: 0;
+    pointer-events: none;
 }   
 
 .black {
