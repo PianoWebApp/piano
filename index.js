@@ -37,6 +37,7 @@ let previousNote;
 let soundsIsLoaded = false;
 let dynamicMode = true;
 let audioMode = 'Stable';
+localStorage.setItem('volume', volume);
 audioMode = localStorage.getItem('mode');
 console.log(header.offsetWidth);
 window.CaMd = function(mode) {
@@ -187,7 +188,7 @@ loadingScreen.addEventListener('click', loadAudio);
 //volume-change
 volumeInput.value = volume * 100
 volumeInput.addEventListener('change', ()=> {
-  volume = +volumeInput.value;
+  volume = +volumeInput.value/100;
   localStorage.setItem('volume', volume);
 })
 
@@ -231,7 +232,7 @@ buttons.addEventListener('mousedown', ()=> {
     event.audio = new buzz.sound(`./sounds/optimised/${event.target.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
   }
   else {
-  const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
+  const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume*100);
   if(!audio.isPaused()) {
     audio.stop()
     audio.play()
@@ -243,7 +244,7 @@ buttons.addEventListener('mousedown', ()=> {
   }
   else {
     event.audio = new Audio(`./sounds/${event.target.getAttribute('file-name')}.mp3`)
-    event.audio.volume = volume/100;
+    event.audio.volume = volume;
     event.audio.play();
   }
   // console.log(event.target.getAttribute('file-name'));
@@ -338,7 +339,7 @@ window.addEventListener('keydown', ()=> {
     event.audio = new buzz.sound(`./sounds/optimised/${button.getAttribute('file-name')}.mp3` , {webAudioApi: true}).setVolume(volume).play()
   }
   else {
-  const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume);
+  const audio = buzzAudioFiles[event.target.getAttribute('file-name')].setVolume(volume*100);
   if(!audio.isPaused()) {
     audio.stop()
     audio.play()
@@ -353,7 +354,7 @@ window.addEventListener('keydown', ()=> {
   }
   else {
     event.audio = new Audio(`./sounds/${button.getAttribute('file-name')}.mp3`)
-  event.audio.volume = volume/100;
+  event.audio.volume = volume;
   event.audio.play();
   }
 
