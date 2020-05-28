@@ -532,5 +532,3 @@ mainMenuList.addEventListener('click', ()=> {
   const notes = songsObjs[songName];
   if(notes) startNotes(notes);
 });
-
-
