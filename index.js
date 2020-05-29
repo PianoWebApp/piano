@@ -24,7 +24,7 @@ const header = document.querySelector('header');
 const volumeInput = document.querySelector('.volume-input');
 const buttonsArray = [...buttons.querySelectorAll('button')];
 const mainMenuList = document.querySelector('.main-menu__list')
-let volume = localStorage.getItem('volume') ? localStorage.getItem('volume') : 0.7;
+let volume = localStorage.getItem('volume') ? +localStorage.getItem('volume') : 0.6;
 const notesBox = document.querySelector('.notes');
 const svgBox = document.querySelector('.svg-ready-box');
 const loadingScreen = document.querySelector('.loading-screen')
@@ -37,7 +37,7 @@ let previousNote;
 let soundsIsLoaded = false;
 let dynamicMode = true;
 let audioMode = 'Stable';
-if(volume > 1) volume = 0.7
+if(+volume > 1) volume = 0.6;
 localStorage.setItem('volume', volume);
 audioMode = localStorage.getItem('mode');
 console.log(header.offsetWidth);
