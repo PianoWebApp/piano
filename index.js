@@ -530,6 +530,7 @@ const startNotes = function(noteString) {
   }
 
 mainMenuList.addEventListener('click', ()=> {
+  if (nowPlaying) return;
   if(event.target.nodeName !== 'LI' || nowPlaying) return;
   const songName = event.target.getAttribute('music-name');
   const notes = songsObjs[songName];
